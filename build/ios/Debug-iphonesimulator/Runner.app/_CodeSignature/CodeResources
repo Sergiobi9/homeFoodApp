@@ -110,7 +110,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		fu30T2M+QbKqKKNxFCYXJ/EHcbU=
+		uUFqPKX94XbBAO3YJ1a7XWX/zhE=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -118,11 +118,11 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		/cqD/HAGGv+exTTBnm7iACWLoEk=
+		EN8JqhVHcByDR/KcJ9c8Cqs96s8=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		Bv1RIN+A15ruczTqD7SkDaj9dFE=
+		23iwStOfdZ74G5Hb2lHZVh/14V0=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -131,6 +131,14 @@
 		<key>Frameworks/App.framework/flutter_assets/NOTICES</key>
 		<data>
 		z4lsFaSHbPHh7DbVKZnjW8/6gYg=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/facebook_icon.png</key>
+		<data>
+		qkYRMvQvg1D71L+GTrNl6YZiU34=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/google_icon.png</key>
+		<data>
+		AKPe18KjHGYhbnxVzkMr8Lv2LDA=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/home_food_icon.png</key>
 		<data>
@@ -146,7 +154,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		19iEopCKhmOldysYFM/7fh4djwA=
+		ZC9LSmsN9YuaHmj5lZPmNlnH7Q0=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -573,11 +581,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			fu30T2M+QbKqKKNxFCYXJ/EHcbU=
+			uUFqPKX94XbBAO3YJ1a7XWX/zhE=
 			</data>
 			<key>hash2</key>
 			<data>
-			k//Uu5HhGlAAE+FZSuPrGt1JK2xsSqToYfa75WkuFpY=
+			MyKyj3wgdn5ssTP5kF0nwMBrgMijNq6z4N3wXjzPgHQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -595,22 +603,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			/cqD/HAGGv+exTTBnm7iACWLoEk=
+			EN8JqhVHcByDR/KcJ9c8Cqs96s8=
 			</data>
 			<key>hash2</key>
 			<data>
-			z1RhZlf2Sde3EDILOZPpbXyQrwatgXDRyiilgJLsOJQ=
+			rHl7f4F0Cu6atETNuGIFNNZy5m5P2KZ204H6c6EdfV4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Bv1RIN+A15ruczTqD7SkDaj9dFE=
+			23iwStOfdZ74G5Hb2lHZVh/14V0=
 			</data>
 			<key>hash2</key>
 			<data>
-			8aK6QtKN/tYoCKoTHGAwKjsKZsvs2daMM7VGiQLoAGs=
+			ZeVt8j2aVTsCbGraBX15pJ9QR0YHqu9IydUk4fl0Eg4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -633,6 +641,28 @@
 			<key>hash2</key>
 			<data>
 			ufEde6uR5bA9XQ3MjCKLnFqudtCh2M3Ye7+fsAPGIpA=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/facebook_icon.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qkYRMvQvg1D71L+GTrNl6YZiU34=
+			</data>
+			<key>hash2</key>
+			<data>
+			bvfJuCzhhm6a3Em6Ny9bRuEIUT1ZVe8qOwn2f0PxTF8=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/google_icon.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AKPe18KjHGYhbnxVzkMr8Lv2LDA=
+			</data>
+			<key>hash2</key>
+			<data>
+			QojdMijuzRl5mPE40FXBgv9BtuIKi1VrYfOS78KrxDg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/home_food_icon.png</key>
@@ -672,11 +702,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			19iEopCKhmOldysYFM/7fh4djwA=
+			ZC9LSmsN9YuaHmj5lZPmNlnH7Q0=
 			</data>
 			<key>hash2</key>
 			<data>
-			n2KcTxkzHuwKW5GTkKyxM76F8nWWxdUH2MVZVuf8zq4=
+			vC0vPWOlzHoQRaDHXnv/4u0jxdwL4Y4Th2gRsDRHGp0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

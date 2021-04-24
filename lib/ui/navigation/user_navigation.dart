@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:home_food_project/ui/home/user_home_page.dart';
+import 'package:home_food_project/ui/login/login.dart';
 import 'package:home_food_project/ui/profile/user_profile.dart';
 
 class UserNavigationPage extends StatefulWidget {
@@ -11,16 +13,18 @@ class UserNavigationPage extends StatefulWidget {
 }
 
 class NavigationPageState extends State<UserNavigationPage> {
-  
+
   int _currentIndex = 0;
   String userRole = "userRole";
 
   final tabs = [
-    UserProfilePage(),
+    UserHomePage(),
+    LoginPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -31,6 +35,10 @@ class NavigationPageState extends State<UserNavigationPage> {
         selectedItemColor: Colors.black,
         backgroundColor: Colors.white,
         items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded),
+              title: Text('Home'),
+              backgroundColor: Colors.black),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
               title: Text('My Profile'),

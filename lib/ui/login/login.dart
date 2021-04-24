@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
+import 'package:home_food_project/ui/navigation/user_navigation.dart';
+import 'package:home_food_project/utils/utils.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -77,8 +79,12 @@ class _MyAppState extends State<LoginPage> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Colors.black)))),
-              onPressed: () => { null }),
+              onPressed: () => { login() }),
         ));
+  }
+
+  dynamic login(){
+    Utils.navigatePage(context, UserNavigationPage());
   }
 
   Widget loginViaEmailText() {
@@ -136,7 +142,6 @@ class _MyAppState extends State<LoginPage> {
             ),
             filled: true,
             hintStyle: new TextStyle(color: Colors.grey[800]),
-            hintText: "Fill in email",
             fillColor: Color(0xFFF8F8F8)),
       ),
     );
@@ -181,7 +186,6 @@ class _MyAppState extends State<LoginPage> {
             ),
             filled: true,
             hintStyle: new TextStyle(color: Colors.grey[800]),
-            hintText: "Fill in password",
             fillColor: Color(0xFFF8F8F8)),
       ),
     );

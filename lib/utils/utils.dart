@@ -25,7 +25,7 @@ class Utils {
                     screen, (Route<dynamic> route) => true);
   }
 
-  static void filterUser(context, String role) {
+  void filterUser(context, String role) {
     if (role == Constants.USER_ROLE) {
       navigatePage(context, UserNavigationPage());
     } {
