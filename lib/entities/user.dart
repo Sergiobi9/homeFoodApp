@@ -8,7 +8,7 @@ class User {
   String email = "";
   String password = "";
   String dateRegistered = "";
-  String userRole = "userRole";
+  String userRole = "";
 
   User() {}
 

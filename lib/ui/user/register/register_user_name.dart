@@ -11,8 +11,6 @@ class RegisterUserNamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    RegisterUser.user = User();
     
     return Scaffold(
         backgroundColor: Colors.white,

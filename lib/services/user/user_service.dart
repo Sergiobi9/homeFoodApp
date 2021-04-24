@@ -1,3 +1,4 @@
+import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/entities/user.dart';
 import 'package:home_food_project/entities/user_session.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,8 @@ class UserService {
         headers: {"Content-Type": "application/json"},
         body: userRegisteredBody);
 
+    print(userRegisteredBody);
+
     print(response.statusCode);
     if (response.statusCode == 200) {
       final decodedData = json.decode(utf8.decode(response.bodyBytes));
@@ -21,6 +24,24 @@ class UserService {
       return user;
     } else {
       return null;
+    }
+  }
+
+  Future<dynamic> checkUserAlreadyExists(String email) async{
+    final response = await http.get(Uri.http(userEndpoint, "user/exist/email/${email}"),
+        headers: {"Content-Type": "application/json"});
+
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      if (response.body.contains(Constants.USER_EXISTS)) {
+        return Constants.USER_EXISTS;
+      } else if (response.body.contains(Constants.USER_DO_NOT_EXIST)) {
+        return Constants.USER_DO_NOT_EXIST;
+      } else {
+        return Constants.RESPONSE_NOT_SUCCESS;
+      }
+    } else {
+        return Constants.RESPONSE_NOT_SUCCESS;
     }
   }
 }

@@ -81,6 +81,7 @@ class _MyAppState extends State<RegisterUserPasswordPage> {
     }
 
     User user = RegisterUser.user;
+    user.password = password;
     user.dateRegistered = DateUtilsHelper.timeStamp();
 
     UserService().registerUser(user).then((UserSession user) async {

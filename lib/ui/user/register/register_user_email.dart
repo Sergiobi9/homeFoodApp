@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:home_food_project/constants/constants.dart';
+import 'package:home_food_project/services/user/user_service.dart';
 import 'package:home_food_project/ui/user/register/register_user.dart';
 import 'package:home_food_project/ui/user/register/register_user_password.dart';
 import 'package:home_food_project/utils/utils.dart';
@@ -60,7 +62,7 @@ class RegisterUserEmailPage extends StatelessWidget {
   }
 
   void registerPassword(context) {
-    String email = emailTextController.text;
+    String email = emailTextController.text.toLowerCase();
 
     bool isEmailNotValid = Validator.checkEmailFormat(email);
 
@@ -69,8 +71,21 @@ class RegisterUserEmailPage extends StatelessWidget {
       return;
     }
 
-    RegisterUser.user.email = email;
-    Utils.navigateToNewScreen(context, RegisterUserPasswordPage());
+    UserService().checkUserAlreadyExists(email).then((value) => {
+          if (value == Constants.USER_EXISTS)
+            {
+              Utils.showToast("There is already an account created with this email")
+            }
+          else if (value == Constants.RESPONSE_NOT_SUCCESS)
+            {
+              Utils.showToast("Something went wrong please try again later")
+            }
+          else
+            {
+              RegisterUser.user.email = email.toLowerCase(),
+              Utils.navigateToNewScreen(context, RegisterUserPasswordPage())
+            }
+        });
   }
 
   Widget userEmailInput() {
