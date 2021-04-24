@@ -50,7 +50,7 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
           child: TextButton(
               child: Text("Sign out".toUpperCase(),
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.white,
                       fontWeight: FontWeight.bold)),
               style: ButtonStyle(

@@ -23,6 +23,7 @@ class _MyAppState extends State<LoginPage> {
     return Stack(children: <Widget>[
       Scaffold(
           backgroundColor: Colors.white,
+          resizeToAvoidBottomInset: false,
           bottomNavigationBar: Container(
             padding: EdgeInsets.only(left: 4.0, right: 4.0),
             height: 44.0 + MediaQuery.of(context).padding.bottom,
@@ -38,8 +39,6 @@ class _MyAppState extends State<LoginPage> {
                       children: <Widget>[
                 loginText(),
                 accessAccount(),
-                socialMediaButtons(context),
-                loginViaEmailText(),
                 emailText(),
                 emailInput(),
                 passwordText(),
@@ -77,7 +76,7 @@ class _MyAppState extends State<LoginPage> {
           child: TextButton(
               child: Text("Sign in".toUpperCase(),
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.white,
                       fontWeight: FontWeight.bold)),
               style: ButtonStyle(
@@ -102,8 +101,8 @@ class _MyAppState extends State<LoginPage> {
     AuthenticationData authenticationData = AuthenticationData(email, password);
     AuthenticationService()
         .doLogin(authenticationData)
-        .then((dynamic userSession) async {
-          print(userSession);
+        .then((dynamic userSession) {
+      print("Hello");
       if (userSession == Constants.RESPONSE_NOT_AUTHORIZED) {
         Utils.showToast("Email or password are not correct");
       } else if (userSession == Constants.RESPONSE_NOT_SUCCESS) {
@@ -160,7 +159,7 @@ class _MyAppState extends State<LoginPage> {
       margin: EdgeInsets.only(top: 10.0, bottom: 5.0, left: 25.0, right: 25.0),
       child: TextField(
         controller: emailController,
-        keyboardType: TextInputType.text,
+        keyboardType: TextInputType.emailAddress,
         style: TextStyle(
           fontSize: 18, // This is not so important
         ),
@@ -243,7 +242,7 @@ class _MyAppState extends State<LoginPage> {
         child: Text(
           "Login",
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(fontSize: 32),
         ));
   }
 

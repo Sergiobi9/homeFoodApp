@@ -16,6 +16,8 @@ class AuthenticationService {
         headers: {"Content-Type": "application/json"},
         body: authenticationDataJson);
 
+        print("Hols");
+
     if (response.statusCode == 200) {
       if (response.body.contains(Constants.USER_DO_NOT_EXIST)) {
         return Constants.USER_DO_NOT_EXIST;

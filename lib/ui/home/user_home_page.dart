@@ -66,7 +66,7 @@ class UserHomePage extends StatelessWidget {
           child: TextButton(
               child: Text("Create family".toUpperCase(),
                   style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.white,
                       fontWeight: FontWeight.bold)),
               style: ButtonStyle(

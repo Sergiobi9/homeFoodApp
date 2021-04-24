@@ -123,7 +123,6 @@ class _MyAppState extends State<RegisterUserPasswordPage> {
                 padding: EdgeInsets.only(right: 10),
                 child: IconButton(
                   icon: Icon(
-                    // Based on passwordVisible state choose the icon
                     obscureTextPassword
                         ? Icons.visibility_rounded
                         : Icons.visibility_off_rounded,
