@@ -125,7 +125,6 @@ class _MyAppState extends State<LoginPage> {
       child: TextField(
         controller: emailController,
         keyboardType: TextInputType.text,
-        obscureText: obscureTextPassword,
         style: TextStyle(
           fontSize: 18, // This is not so important
         ),

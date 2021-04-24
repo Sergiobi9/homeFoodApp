@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/ui/home/user_home_page.dart';
-import 'package:home_food_project/ui/login/login.dart';
 import 'package:home_food_project/ui/profile/user_profile.dart';
 
 class UserNavigationPage extends StatefulWidget {
@@ -19,7 +18,7 @@ class NavigationPageState extends State<UserNavigationPage> {
 
   final tabs = [
     UserHomePage(),
-    LoginPage(),
+    UserProfilePage(),
   ];
 
   @override
