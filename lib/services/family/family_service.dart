@@ -1,5 +1,6 @@
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/entities/family/family_register.dart';
+import 'package:home_food_project/utils/date_utils.dart';
 import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,11 +16,13 @@ class FamilyService {
         .getStringFromStorage("userId")
         .then((value) => userId = value);
 
+    String currentDate = DateUtilsHelper.timeStamp();
+
     familyRegister.family.ownerId = userId;
 
     var familyRegisterBody = jsonEncode(familyRegister.toJson());
 
-    final response = await http.post(Uri.http(familyService, "family/register"),
+    final response = await http.post(Uri.http(familyService, "family/register/${currentDate}"),
         headers: {"Content-Type": "application/json"},
         body: familyRegisterBody);
 

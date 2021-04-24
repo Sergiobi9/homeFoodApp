@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
+import 'package:home_food_project/entities/family/family_member_register.dart';
 import 'package:home_food_project/entities/family/family_member_user_request.dart';
 import 'package:home_food_project/entities/family/family_register.dart';
 import 'package:home_food_project/entities/user/user_session.dart';
 import 'package:home_food_project/services/family/family_service.dart';
 import 'package:home_food_project/services/user/user_service.dart';
 import 'package:home_food_project/ui/family/register/register_family.dart';
+import 'package:home_food_project/utils/date_utils.dart';
 import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:home_food_project/utils/utils.dart';
 
@@ -141,15 +143,17 @@ class _MyAppState extends State<RegisterFamilyMemebersPage> {
   }
 
   dynamic registerFamily(){
-    List<String> membersUserIds = [];
+    List<FamilyMemberRegister> membersUserIds = [];
 
     for (FamilyMemberUserRequest familyMemberUserRequest in familyMembers){
       String userId = familyMemberUserRequest.userId;
-      membersUserIds.add(userId);
+      membersUserIds.add(FamilyMemberRegister(userId));
     }
 
-    RegisterFamily.familyRegister.membersUserIds = membersUserIds;
+    RegisterFamily.familyRegister.membersUsers = membersUserIds;
     FamilyRegister familyRegister = RegisterFamily.familyRegister;
+    familyRegister.family.dateRegistered = DateUtilsHelper.timeStamp();
+    
     FamilyService().registerFamily(familyRegister).then((value) => {
       if (value == Constants.SUCCESS){
         Utils.showToast("Family created successfully"),

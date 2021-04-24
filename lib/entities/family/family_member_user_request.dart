@@ -18,7 +18,7 @@ class FamilyMemberUserRequest {
   }
 
   Map toJson() => {
-        'id': userId,
+        'userId': userId,
         'firstName': firstName,
         'lastName': lastName,
         'email': email,
