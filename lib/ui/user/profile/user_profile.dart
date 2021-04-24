@@ -42,7 +42,7 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
         ));
   }
 
-  Widget logoutBtn(){
+  Widget logoutBtn() {
     return Container(
         margin: const EdgeInsets.only(
             top: 10.0, bottom: 10.0, left: 25.0, right: 25.0),
@@ -65,18 +65,20 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Colors.black)))),
-              onPressed: () => { doLogout() }),
+              onPressed: () => {doLogout()}),
         ));
   }
 
-  void doLogout() async{
-    await SharedPref().saveBooleanFromStorage("isUserLoggedIn", false);
-    await SharedPref().saveObjectFromStorage("userSession", null);
+  void doLogout() async {
+    await SharedPref().saveBooleanToStorage("isUserLoggedIn", false);
+    await SharedPref().saveStringToStorage("userEmail", "");
+    await SharedPref().saveStringToStorage("userId", "");
+    await SharedPref().saveObjectToStorage("userSession", null);
     Utils.navigatePage(context, LoginPage());
   }
 
-  Widget getUserFullName(){
-     return Container(
+  Widget getUserFullName() {
+    return Container(
         margin: const EdgeInsets.only(top: 20.0, bottom: 25.0),
         child: Text("Sergi Obiols Olcina",
             style: new TextStyle(

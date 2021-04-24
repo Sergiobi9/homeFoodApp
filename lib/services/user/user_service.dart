@@ -1,6 +1,7 @@
 import 'package:home_food_project/constants/constants.dart';
-import 'package:home_food_project/entities/user.dart';
-import 'package:home_food_project/entities/user_session.dart';
+import 'package:home_food_project/entities/family/family_member_user_request.dart';
+import 'package:home_food_project/entities/user/user.dart';
+import 'package:home_food_project/entities/user/user_session.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../api_provider.dart';
@@ -27,8 +28,9 @@ class UserService {
     }
   }
 
-  Future<dynamic> checkUserAlreadyExists(String email) async{
-    final response = await http.get(Uri.http(userEndpoint, "user/exist/email/${email}"),
+  Future<dynamic> checkUserAlreadyExists(String email) async {
+    final response = await http.get(
+        Uri.http(userEndpoint, "user/exist/email/${email}"),
         headers: {"Content-Type": "application/json"});
 
     print(response.statusCode);
@@ -41,7 +43,26 @@ class UserService {
         return Constants.RESPONSE_NOT_SUCCESS;
       }
     } else {
-        return Constants.RESPONSE_NOT_SUCCESS;
+      return Constants.RESPONSE_NOT_SUCCESS;
+    }
+  }
+
+  Future<dynamic> checkUserExistToBeFamilyMember(String identifier) async {
+    final response = await http.get(
+        Uri.http(userEndpoint, "user/request/family/member/${identifier}"),
+        headers: {"Content-Type": "application/json"});
+
+    if (response.statusCode == 200) {
+      bool userDoNotExist = response.body.length == 0;
+      if (userDoNotExist) {
+        return Constants.USER_DO_NOT_EXIST;
+      } else {
+        final decodedData = json.decode(utf8.decode(response.bodyBytes));
+        final user = new FamilyMemberUserRequest.fromJsonMap(decodedData);
+        return user;
+      }
+    } else {
+      return Constants.RESPONSE_NOT_SUCCESS;
     }
   }
 }

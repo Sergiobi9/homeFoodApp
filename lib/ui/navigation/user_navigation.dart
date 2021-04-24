@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/ui/home/user_home_page.dart';
 import 'package:home_food_project/ui/user/profile/user_profile.dart';
 
@@ -14,7 +15,7 @@ class UserNavigationPage extends StatefulWidget {
 class NavigationPageState extends State<UserNavigationPage> {
 
   int _currentIndex = 0;
-  String userRole = "userRole";
+  String userRole = Constants.USER_ROLE;
 
   final tabs = [
     UserHomePage(),

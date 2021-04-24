@@ -5,7 +5,7 @@ import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:home_food_project/utils/utils.dart';
 
-import 'entities/user_session.dart';
+import 'entities/user/user_session.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

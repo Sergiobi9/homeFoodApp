@@ -11,17 +11,27 @@ class SharedPref {
     return jsonDecode(sharedPreferences.getString(key));
   }
 
+  Future<String> getStringFromStorage(String key) async{
+    final sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString(key);
+  }
+
+  saveStringToStorage(String key, value) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(key, value);
+  }
+
   Future<bool> getBooleanFromStorage(String key) async{
     final sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getBool(key);
   }
 
-  saveBooleanFromStorage(String key, value) async {
+  saveBooleanToStorage(String key, value) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool(key, value);
   }
 
-  saveObjectFromStorage(String key, value) async {
+  saveObjectToStorage(String key, value) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString(key, json.encode(value));
   }

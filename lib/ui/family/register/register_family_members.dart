@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:home_food_project/constants/constants.dart';
+import 'package:home_food_project/entities/family/family_member_user_request.dart';
+import 'package:home_food_project/entities/family/family_register.dart';
+import 'package:home_food_project/entities/user/user_session.dart';
+import 'package:home_food_project/services/family/family_service.dart';
+import 'package:home_food_project/services/user/user_service.dart';
+import 'package:home_food_project/ui/family/register/register_family.dart';
+import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class RegisterFamilyMemebersPage extends StatefulWidget {
@@ -9,10 +17,15 @@ class RegisterFamilyMemebersPage extends StatefulWidget {
 class _MyAppState extends State<RegisterFamilyMemebersPage> {
   TextEditingController familyMemberEmailController =
       new TextEditingController();
-  List<dynamic> familyMembers = [];
+
+  List<FamilyMemberUserRequest> familyMembers = [];
+
+  String userEmail;
 
   @override
   Widget build(BuildContext context) {
+    getUserEmail();
+
     return Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
@@ -25,6 +38,10 @@ class _MyAppState extends State<RegisterFamilyMemebersPage> {
           membersAddedList(),
           nextBtn()
         ]))));
+  }
+
+  dynamic getUserEmail() async{
+    await SharedPref().getStringFromStorage("userEmail").then((value) => userEmail = value);
   }
 
   Widget membersAddedList() {
@@ -44,36 +61,36 @@ class _MyAppState extends State<RegisterFamilyMemebersPage> {
                     child: Container(
                         child: Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: familyMemberInfo(familyMembers[index], index))));
+                            child: familyMemberInfo(
+                                familyMembers[index], index))));
               }));
     }
   }
 
   Widget deleteUserIcon(index) {
     return IconButton(
-      icon: Icon(Icons.cancel_rounded, color: Colors.red),
-      color: Colors.red,
-      iconSize: 26,
-      onPressed : () {
-        removeUserFromFamily(index);
-      }
-    );
+        icon: Icon(Icons.cancel_rounded, color: Colors.red),
+        color: Colors.red,
+        iconSize: 26,
+        onPressed: () {
+          removeUserFromFamily(index);
+        });
   }
 
-  removeUserFromFamily(index){
+  removeUserFromFamily(index) {
     setState(() {
-         familyMembers.removeAt(index);
+      familyMembers.removeAt(index);
     });
   }
 
-  Widget familyMemberInfo(item, index) {
+  Widget familyMemberInfo(FamilyMemberUserRequest item, index) {
     return Container(
         child: Row(
       children: [getUserInfo(item), deleteUserIcon(index)],
     ));
   }
 
-  Widget getUserInfo(item) {
+  Widget getUserInfo(FamilyMemberUserRequest item) {
     return Container(
       width: MediaQuery.of(context).size.height * 0.33,
       child: Column(
@@ -82,13 +99,13 @@ class _MyAppState extends State<RegisterFamilyMemebersPage> {
           children: [
             Container(
                 margin: EdgeInsets.all(5.0),
-                child: Text("Sergi Obiols Olcina",
+                child: Text(item.firstName + " " + item.lastName,
                     textAlign: TextAlign.start,
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),
             Container(
                 margin: EdgeInsets.all(5.0),
-                child: Text("sergiobi1395@gmail.com",
+                child: Text(item.email,
                     textAlign: TextAlign.start, style: TextStyle(fontSize: 16)))
           ]),
     );
@@ -119,8 +136,42 @@ class _MyAppState extends State<RegisterFamilyMemebersPage> {
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25.0),
                               side: BorderSide(color: Colors.black)))),
-                  onPressed: () => {}),
+                  onPressed: () => {registerFamily()}),
             )));
+  }
+
+  dynamic registerFamily(){
+    List<String> membersUserIds = [];
+
+    for (FamilyMemberUserRequest familyMemberUserRequest in familyMembers){
+      String userId = familyMemberUserRequest.userId;
+      membersUserIds.add(userId);
+    }
+
+    RegisterFamily.familyRegister.membersUserIds = membersUserIds;
+    FamilyRegister familyRegister = RegisterFamily.familyRegister;
+    FamilyService().registerFamily(familyRegister).then((value) => {
+      if (value == Constants.SUCCESS){
+        Utils.showToast("Family created successfully"),
+        updateUserRole()
+      } else {
+        Utils.showToast("Something went wrong please try again later"),
+      }
+    });
+  }
+
+  void updateUserRole() async {
+    String familyOwnerRole = Constants.FAMILY_OWNER_ROLE;
+
+    dynamic userSession = await SharedPref().getObjectFromStorage("userSession");
+    userSession['user']['userRole'] = familyOwnerRole;
+    await SharedPref().saveObjectToStorage("userSession", userSession);
+
+    redirectUser(familyOwnerRole);
+  }
+
+  void redirectUser(userRole){
+    Utils().filterUser(context, userRole);
   }
 
   Widget familyMembersInput() {
@@ -161,18 +212,35 @@ class _MyAppState extends State<RegisterFamilyMemebersPage> {
             ),
             filled: true,
             hintStyle: new TextStyle(color: Colors.grey[800]),
-            hintText: "Write email",
+            hintText: "Write email or uid",
             fillColor: Color(0xFFF8F8F8)),
       ),
     );
   }
 
   dynamic addMembers() {
-    familyMemberEmailController.text = "";
-    setState(() {
-      Utils.showToast("Added new member");
-      familyMembers.add("Sergi Obiols Olcina");
-    });
+    String identifier = familyMemberEmailController.text;
+  
+    if (userEmail == identifier){
+      Utils.showToast("You are the family owner");
+      return;
+    }
+
+    UserService().checkUserExistToBeFamilyMember(identifier).then((value) => {
+          if (value == Constants.USER_DO_NOT_EXIST){
+            Utils.showToast("User do not exist")
+          }
+          else if (value == Constants.RESPONSE_NOT_SUCCESS){
+            Utils.showToast("Something went wrong, please try again later.")
+          }
+          else { 
+              familyMemberEmailController.text = "",
+              setState(() {
+                Utils.showToast("Added new member");
+                familyMembers.add(value);
+              })
+            }
+        });
   }
 
   Widget membersText() {

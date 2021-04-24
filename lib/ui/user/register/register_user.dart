@@ -1,4 +1,4 @@
-import 'package:home_food_project/entities/user.dart';
+import 'package:home_food_project/entities/user/user.dart';
 
 class RegisterUser {
 

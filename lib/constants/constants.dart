@@ -9,5 +9,6 @@ class Constants {
 
   static const String RESPONSE_NOT_AUTHORIZED = "Not authorized";
   static const String RESPONSE_NOT_SUCCESS = "Response error";
+  static const String SUCCESS = "success";
 
 }

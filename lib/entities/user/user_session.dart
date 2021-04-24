@@ -1,5 +1,5 @@
 
-import 'package:home_food_project/entities/user.dart';
+import 'package:home_food_project/entities/user/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 @JsonSerializable()

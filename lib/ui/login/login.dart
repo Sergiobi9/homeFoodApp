@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/entities/authentication/authentication_data.dart';
-import 'package:home_food_project/entities/user_session.dart';
+import 'package:home_food_project/entities/user/user_session.dart';
 import 'package:home_food_project/services/authentication/authentication_service.dart';
 import 'package:home_food_project/ui/navigation/user_navigation.dart';
 import 'package:home_food_project/ui/user/register/register_user_name.dart';
@@ -116,8 +116,10 @@ class _MyAppState extends State<LoginPage> {
   }
 
   dynamic doLoginSuccess(UserSession userSession) async {
-    await SharedPref().saveBooleanFromStorage("isUserLoggedIn", true);
-    await SharedPref().saveObjectFromStorage("userSession", userSession);
+    await SharedPref().saveBooleanToStorage("isUserLoggedIn", true);
+    await SharedPref().saveStringToStorage("userEmail", userSession.user.email);
+    await SharedPref().saveStringToStorage("userId", userSession.user.id);
+    await SharedPref().saveObjectToStorage("userSession", userSession);
     String userRole = userSession.user.userRole;
     Utils().filterUser(context, userRole);
   }

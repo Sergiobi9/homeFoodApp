@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/ui/login/login.dart';
+import 'package:home_food_project/ui/navigation/user_family_member_navigation.dart';
+import 'package:home_food_project/ui/navigation/user_family_owner_navigation.dart';
 import 'package:home_food_project/ui/navigation/user_navigation.dart';
 
 class Utils {
@@ -29,9 +31,9 @@ class Utils {
     if (role == Constants.USER_ROLE) {
       navigatePage(context, UserNavigationPage());
     } else if (role == Constants.FAMILY_OWNER_ROLE){
-      navigatePage(context, LoginPage());
+      navigatePage(context, UserFamilyOwnerNavigationPage());
     } else if (role == Constants.FAMILY_MEMBER_ROLE){
-      navigatePage(context, LoginPage());
+      navigatePage(context, UserFamilyMemberNavigationPage());
     }
   }
 

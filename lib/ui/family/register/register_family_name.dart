@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_food_project/ui/family/register/register_family.dart';
 import 'package:home_food_project/ui/family/register/register_family_members.dart';
 import 'package:home_food_project/utils/utils.dart';
 
@@ -66,6 +67,7 @@ class RegisterFamilyNamePage extends StatelessWidget {
       return;
     }
 
+    RegisterFamily.familyRegister.family.name = familyName;
     Utils.navigateToNewScreen(context, RegisterFamilyMemebersPage());
   }
 

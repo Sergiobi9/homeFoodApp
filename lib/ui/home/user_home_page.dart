@@ -14,7 +14,7 @@ class UserHomePage extends StatelessWidget {
                 child: SafeArea(
                     child: Stack(
               children: [
-                appNameAndLogo(context),
+                welcomeText(context),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -25,33 +25,24 @@ class UserHomePage extends StatelessWidget {
     );
   }
 
-  Widget appNameAndLogo(context) {
+  Widget welcomeText(context) {
     return Container(
-        margin: EdgeInsets.only(top: 50, bottom: 25, right: 50, left: 50),
-        alignment: Alignment.topCenter,
+        margin: EdgeInsets.only(top: 50, bottom: 25, right: 25, left: 25),
+        alignment: Alignment.topLeft,
         child: Column(children: [
           Text(
-            "Home Food",
+            "Good morning, " + "Sergi" ,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 28),
-          ),
-          Container(
-        margin: EdgeInsets.only(top: 20, right: 50, left: 50),
-        alignment: Alignment.topCenter,
-        child:Image.asset(
-            Constants.APP_ICON,
-            height: MediaQuery.of(context).size.width * 0.25,
-            width: MediaQuery.of(context).size.width * 0.25,
-            fit: BoxFit.scaleDown,
-          ))
+          )
         ]));
   }
 
   Widget addFirstFamily() {
     return Container(
-        margin: EdgeInsets.only(top: 65, bottom: 25, right: 50, left: 50),
+        margin: EdgeInsets.only(top: 65, bottom: 50, right: 50, left: 50),
         child: Text(
-          "To start, you have to be part of afamily or create one",
+          "To start, you have to be part of a family or create one",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 18),
         ));

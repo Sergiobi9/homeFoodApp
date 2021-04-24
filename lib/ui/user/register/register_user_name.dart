@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_food_project/entities/user.dart';
+import 'package:home_food_project/entities/user/user.dart';
 import 'package:home_food_project/ui/user/register/register_user.dart';
 import 'package:home_food_project/ui/user/register/register_user_email.dart';
 import 'package:home_food_project/utils/utils.dart';
