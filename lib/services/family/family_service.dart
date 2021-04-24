@@ -7,7 +7,7 @@ import 'dart:convert';
 import '../api_provider.dart';
 
 class FamilyService {
-  String familyService = ApiProvider().getApiUrl();
+  String familyEndpoint = ApiProvider().getApiUrl();
 
   Future<dynamic> registerFamily(FamilyRegister familyRegister) async {
     String userId = "";
@@ -22,7 +22,7 @@ class FamilyService {
 
     var familyRegisterBody = jsonEncode(familyRegister.toJson());
 
-    final response = await http.post(Uri.http(familyService, "family/register/${currentDate}"),
+    final response = await http.post(Uri.http(familyEndpoint, "family/register/${currentDate}"),
         headers: {"Content-Type": "application/json"},
         body: familyRegisterBody);
 

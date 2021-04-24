@@ -33,7 +33,7 @@ class UserHomePage extends StatelessWidget {
           Text(
             "Good morning, " + "Sergi" ,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 28),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           )
         ]));
   }

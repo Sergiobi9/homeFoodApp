@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/ui/family/family_details.dart';
 import 'package:home_food_project/ui/family/register/register_family_name.dart';
+import 'package:home_food_project/ui/food/food_list.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class UserFamilyOwnerHomePage extends StatelessWidget {
@@ -37,18 +38,46 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.1,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 4,
+            itemCount: 5,
             itemBuilder: (context, index) {
               if (index == 0) {
                 return manageFamilyBtn(context);
               } else if (index == 1) {
                 return manageFoodBtn(context);
               } else if (index == 2) {
+                return categoriesBtn(context);
+              } else if (index == 3) {
                 return supermarketsBtn(context);
               } else {
                 return newsBtn(context);
               }
             }));
+  }
+
+  Widget categoriesBtn(context){
+    return Container(
+        margin: const EdgeInsets.only(
+            top: 25.0, bottom: 25.0, left: 5.0, right: 5.0),
+        child: SizedBox(
+          child: TextButton(
+              child: Text("categories".toUpperCase(),
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.only(right: 50, left: 50)),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF274060)),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF274060)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          side: BorderSide(color: Color(0xFF274060))))),
+              onPressed: () => {}),
+        ));
   }
 
   Widget supermarketsBtn(context) {
@@ -99,7 +128,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
             top: 25.0, bottom: 25.0, left: 5.0, right: 5.0),
         child: SizedBox(
           child: TextButton(
-              child: Text("food".toUpperCase(),
+              child: Text("food list".toUpperCase(),
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
@@ -115,7 +144,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Color(0xFFE18335))))),
-              onPressed: () => {}),
+              onPressed: () => {foodList(context)}),
         ));
   }
 
@@ -175,6 +204,10 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
     Utils.navigateToNewScreen(context, FamilyDetailsPage());
   }
 
+   void foodList(context){
+    Utils.navigateToNewScreen(context, FoodListPage());
+  }
+
   Widget recentActivityText() {
     return Container(
         margin: EdgeInsets.only(top: 25, bottom: 25, right: 25, left: 25),
@@ -196,7 +229,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
           Text(
             "Good morning, " + "Pepe",
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 28),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           )
         ]));
   }

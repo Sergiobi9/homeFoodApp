@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/entities/family/family_member_detailed.dart';
 import 'package:home_food_project/services/family/family_member_service.dart';
+import 'package:home_food_project/ui/category/register/register_category_name.dart';
 import 'package:home_food_project/utils/shared_preferences.dart';
+import 'package:home_food_project/utils/utils.dart';
 
-class FamilyDetailsPage extends StatefulWidget {
+class FoodListPage extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<FamilyDetailsPage> {
+class _MyAppState extends State<FoodListPage> {
   TextEditingController familyMemberEmailController =
       new TextEditingController();
 
@@ -42,7 +44,7 @@ class _MyAppState extends State<FamilyDetailsPage> {
 
             return Column(children: <Widget>[
               familyNameText(familyName),
-              manageFamilyButtons(familyId),
+              manageCategoriesAndSupermarketsButtons(familyId),
               membersText(),
               membersAddedList(),
             ]);
@@ -52,7 +54,7 @@ class _MyAppState extends State<FamilyDetailsPage> {
         });
   }
 
-  manageFamilyButtons(String familyId) {
+  manageCategoriesAndSupermarketsButtons(String familyId) {
     return Container(
       margin: EdgeInsets.only(top: 35, bottom: 35),
       child: Row(
@@ -64,29 +66,29 @@ class _MyAppState extends State<FamilyDetailsPage> {
                 margin: EdgeInsets.only(right: 10),
                 child: SizedBox(
                     child: TextButton(
-                        child: Text("Edit".toUpperCase(),
+                        child: Text("Add category".toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold)),
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFFB497D6)),
+                                Color(0xFF274060)),
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFFB497D6)),
+                                Color(0xFF274060)),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25.0),
                                     side:
-                                        BorderSide(color: Color(0xFFB497D6))))),
-                        onPressed: () => {null}))),
+                                        BorderSide(color: Color(0xFF274060))))),
+                        onPressed: () => { addNewCategory(familyId)}))),
             Container(
                 width: MediaQuery.of(context).size.width * 0.43,
-                margin: EdgeInsets.only(right: 10),
+                margin: EdgeInsets.only(left: 10),
                 child: SizedBox(
                     child: TextButton(
-                        child: Text("Delete".toUpperCase(),
+                        child: Text("Add supermarket".toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
@@ -107,6 +109,10 @@ class _MyAppState extends State<FamilyDetailsPage> {
     );
   }
 
+  void addNewCategory(familyId){
+    Utils.navigateToNewScreen(context, RegisterCategoryNamePage(familyId: familyId));
+  }
+
   Widget familyNameText(String familyName) {
     bool endsWithS = familyName.toLowerCase().endsWith("s");
 
@@ -114,7 +120,7 @@ class _MyAppState extends State<FamilyDetailsPage> {
       margin: EdgeInsets.only(top: 50.0, left: 25.0, right: 15.0),
       alignment: Alignment.centerLeft,
       child: Text(
-        endsWithS ? familyName + "' family" : familyName + "'s family",
+        endsWithS ? familyName + "' food list" : familyName + "'s food list",
         style: TextStyle(
             color: Color(0xff333333),
             fontSize: 28,

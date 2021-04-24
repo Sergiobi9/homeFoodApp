@@ -11,4 +11,5 @@ class Constants {
   static const String RESPONSE_NOT_SUCCESS = "Response error";
   static const String SUCCESS = "success";
 
+  static const String CATEGORY_EXISTS = "Category already exists";
 }

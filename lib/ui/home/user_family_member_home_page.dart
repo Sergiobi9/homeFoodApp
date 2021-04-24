@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class UserFamilyOwnerHomePage extends StatelessWidget {
-  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,7 +31,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
           Text(
             "Good morning, " + "Manolo",
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 28),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           )
         ]));
   }
