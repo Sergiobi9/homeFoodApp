@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
-import 'package:home_food_project/ui/family/register_family_name.dart';
+import 'package:home_food_project/ui/family/register/register_family_name.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class UserHomePage extends StatelessWidget {

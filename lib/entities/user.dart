@@ -7,6 +7,7 @@ class User {
   String lastName = "";
   String email = "";
   String password = "";
+  String uid = "";
   String dateRegistered = "";
   String userRole = "";
 
@@ -18,6 +19,7 @@ class User {
     lastName = json['lastName'];
     email = json['email'];
     password = json['password'];
+    uid = json['uid'];
     dateRegistered = json['dateRegistered'];
     userRole = json['userRole'];
   }
@@ -28,6 +30,7 @@ class User {
         'lastName': lastName,
         'email': email,
         'password': password,
+        'uid':uid,
         'dateRegistered': dateRegistered,
         'userRole': userRole
       };

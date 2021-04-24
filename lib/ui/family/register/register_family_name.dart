@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:home_food_project/ui/family/register/register_family_members.dart';
+import 'package:home_food_project/utils/utils.dart';
 
 class RegisterFamilyNamePage extends StatelessWidget {
 
@@ -52,8 +54,19 @@ class RegisterFamilyNamePage extends StatelessWidget {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Colors.black)))),
-              onPressed: () => { null }),
+              onPressed: () => { registerMembers(context) }),
         ));
+  }
+
+  dynamic registerMembers(context){
+    String familyName = familyNameController.text;
+
+    if (familyName == ""){
+      Utils.showToast("Please, give a name to your family");
+      return;
+    }
+
+    Utils.navigateToNewScreen(context, RegisterFamilyMemebersPage());
   }
 
 
