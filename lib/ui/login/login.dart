@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/ui/navigation/user_navigation.dart';
+import 'package:home_food_project/ui/user/register/register_user_name.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class LoginPage extends StatefulWidget {
@@ -47,13 +48,22 @@ class _MyAppState extends State<LoginPage> {
   }
 
   Widget dontHaveAccount(){
-    return Container(
+    return new GestureDetector(
+        onTap: () {
+          registerUser(context);
+        },
+        child: Container(
         margin: EdgeInsets.only(top: 20, bottom: 5, right: 25, left: 25),
         child: Text(
           "Do not have account? Register",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 16),
-        ));
+        ))
+    );
+  }
+
+  void registerUser(context){
+    Utils.navigateToNewScreen(context, RegisterUserNamePage());
   }
 
   Widget loginBtn(){

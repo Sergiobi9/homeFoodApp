@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/ui/home/user_home_page.dart';
-import 'package:home_food_project/ui/profile/user_profile.dart';
+import 'package:home_food_project/ui/user/profile/user_profile.dart';
 
 class UserNavigationPage extends StatefulWidget {
   UserNavigationPage({Key key, this.title}) : super(key: key);
