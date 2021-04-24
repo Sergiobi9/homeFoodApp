@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/ui/login/login.dart';
+import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -68,7 +69,9 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
         ));
   }
 
-  void doLogout(){
+  void doLogout() async{
+    await SharedPref().saveBooleanFromStorage("isUserLoggedIn", false);
+    await SharedPref().saveObjectFromStorage("userSession", null);
     Utils.navigatePage(context, LoginPage());
   }
 
