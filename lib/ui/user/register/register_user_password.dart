@@ -84,20 +84,22 @@ class _MyAppState extends State<RegisterUserPasswordPage> {
     user.password = password;
     user.dateRegistered = DateUtilsHelper.timeStamp();
 
-    UserService().registerUser(user).then((UserSession user) async {
-      if (user == null) {
+    UserService().registerUser(user).then((UserSession userSession) async {
+      if (userSession == null) {
         Utils.showToast(
             "Something went wrong creating your account, please try again later");
       } else {
-        loginUser(user);
+        loginUser(userSession);
       }
     });
   }
 
-  dynamic loginUser(UserSession user) async {
+  dynamic loginUser(UserSession userSession) async {
+    String userRole = userSession.user.userRole;
+
     await SharedPref().saveBooleanFromStorage("isUserLoggedIn", true);
-    await SharedPref().saveObjectFromStorage("userSession", user);
-    Utils.navigatePage(context, UserNavigationPage());
+    await SharedPref().saveObjectFromStorage("userSession", userSession);
+    Utils().filterUser(context, userRole);
   }
 
   Widget userPasswordInput() {

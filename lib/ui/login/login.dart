@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
+import 'package:home_food_project/entities/authentication/authentication_data.dart';
+import 'package:home_food_project/entities/user_session.dart';
+import 'package:home_food_project/services/authentication/authentication_service.dart';
 import 'package:home_food_project/ui/navigation/user_navigation.dart';
 import 'package:home_food_project/ui/user/register/register_user_name.dart';
+import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,7 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _MyAppState extends State<LoginPage> {
-
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   bool obscureTextPassword = true;
@@ -47,26 +50,25 @@ class _MyAppState extends State<LoginPage> {
     ]);
   }
 
-  Widget dontHaveAccount(){
+  Widget dontHaveAccount() {
     return new GestureDetector(
         onTap: () {
           registerUser(context);
         },
         child: Container(
-        margin: EdgeInsets.only(top: 20, bottom: 5, right: 25, left: 25),
-        child: Text(
-          "Do not have account? Register",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16),
-        ))
-    );
+            margin: EdgeInsets.only(top: 20, bottom: 5, right: 25, left: 25),
+            child: Text(
+              "Do not have account? Register",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            )));
   }
 
-  void registerUser(context){
+  void registerUser(context) {
     Utils.navigateToNewScreen(context, RegisterUserNamePage());
   }
 
-  Widget loginBtn(){
+  Widget loginBtn() {
     return Container(
         margin: const EdgeInsets.only(
             top: 10.0, bottom: 10.0, left: 25.0, right: 25.0),
@@ -89,12 +91,36 @@ class _MyAppState extends State<LoginPage> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Colors.black)))),
-              onPressed: () => { login() }),
+              onPressed: () => {login()}),
         ));
   }
 
-  dynamic login(){
-    Utils.navigatePage(context, UserNavigationPage());
+  dynamic login() {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    AuthenticationData authenticationData = AuthenticationData(email, password);
+    AuthenticationService()
+        .doLogin(authenticationData)
+        .then((dynamic userSession) async {
+          print(userSession);
+      if (userSession == Constants.RESPONSE_NOT_AUTHORIZED) {
+        Utils.showToast("Email or password are not correct");
+      } else if (userSession == Constants.RESPONSE_NOT_SUCCESS) {
+        Utils.showToast("Something went wrong, please try again later");
+      } else if (userSession == Constants.USER_DO_NOT_EXIST) {
+        Utils.showToast("User do not exist, create account");
+      } else {
+        doLoginSuccess(userSession);
+      }
+    });
+  }
+
+  dynamic doLoginSuccess(UserSession userSession) async {
+    await SharedPref().saveBooleanFromStorage("isUserLoggedIn", true);
+    await SharedPref().saveObjectFromStorage("userSession", userSession);
+    String userRole = userSession.user.userRole;
+    Utils().filterUser(context, userRole);
   }
 
   Widget loginViaEmailText() {
@@ -107,7 +133,7 @@ class _MyAppState extends State<LoginPage> {
         ));
   }
 
-  Widget passwordText(){
+  Widget passwordText() {
     return Container(
         margin: EdgeInsets.only(top: 25, bottom: 5, right: 25, left: 25),
         alignment: Alignment.topLeft,
@@ -118,7 +144,7 @@ class _MyAppState extends State<LoginPage> {
         ));
   }
 
-  Widget emailText(){
+  Widget emailText() {
     return Container(
         margin: EdgeInsets.only(top: 25, bottom: 5, right: 25, left: 25),
         alignment: Alignment.topLeft,
@@ -129,7 +155,7 @@ class _MyAppState extends State<LoginPage> {
         ));
   }
 
-  Widget emailInput(){
+  Widget emailInput() {
     return Container(
       margin: EdgeInsets.only(top: 10.0, bottom: 5.0, left: 25.0, right: 25.0),
       child: TextField(
@@ -140,16 +166,18 @@ class _MyAppState extends State<LoginPage> {
         ),
         decoration: new InputDecoration(
             errorBorder: InputBorder.none,
-            focusColor: Color(0xFFF8F8F8),    
+            focusColor: Color(0xFFF8F8F8),
             border: new OutlineInputBorder(
               borderRadius: const BorderRadius.all(
                 const Radius.circular(15.0),
               ),
             ),
             contentPadding: EdgeInsets.only(
-              top: 25, bottom: 25, right: 25, left: 25, // HERE THE IMPORTANT PART
+              top: 25, bottom: 25, right: 25,
+              left: 25, // HERE THE IMPORTANT PART
             ),
             filled: true,
+            hintText: "Email",
             hintStyle: new TextStyle(color: Colors.grey[800]),
             fillColor: Color(0xFFF8F8F8)),
       ),
@@ -168,7 +196,7 @@ class _MyAppState extends State<LoginPage> {
         ),
         decoration: new InputDecoration(
             errorBorder: InputBorder.none,
-            focusColor: Color(0xFFF8F8F8),    
+            focusColor: Color(0xFFF8F8F8),
             suffixIcon: new GestureDetector(
               onTap: () {
                 togglePasswordIcon();
@@ -178,10 +206,11 @@ class _MyAppState extends State<LoginPage> {
                 child: IconButton(
                   icon: Icon(
                     // Based on passwordVisible state choose the icon
-                    obscureTextPassword ? Icons.visibility_rounded : Icons.visibility_off_rounded,
+                    obscureTextPassword
+                        ? Icons.visibility_rounded
+                        : Icons.visibility_off_rounded,
                     color: Color(0xff333333),
                   ),
-                  
                 ),
               ),
             ),
@@ -191,9 +220,11 @@ class _MyAppState extends State<LoginPage> {
               ),
             ),
             contentPadding: EdgeInsets.only(
-              top: 25, bottom: 25, right: 25, left: 25, // HERE THE IMPORTANT PART
+              top: 25, bottom: 25, right: 25,
+              left: 25, // HERE THE IMPORTANT PART
             ),
             filled: true,
+            hintText: "Password",
             hintStyle: new TextStyle(color: Colors.grey[800]),
             fillColor: Color(0xFFF8F8F8)),
       ),
@@ -205,7 +236,6 @@ class _MyAppState extends State<LoginPage> {
       obscureTextPassword = !obscureTextPassword;
     });
   }
-
 
   Widget loginText() {
     return Container(

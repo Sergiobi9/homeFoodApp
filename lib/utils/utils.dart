@@ -28,7 +28,9 @@ class Utils {
   void filterUser(context, String role) {
     if (role == Constants.USER_ROLE) {
       navigatePage(context, UserNavigationPage());
-    } {
+    } else if (role == Constants.FAMILY_OWNER_ROLE){
+      navigatePage(context, LoginPage());
+    } else if (role == Constants.FAMILY_MEMBER_ROLE){
       navigatePage(context, LoginPage());
     }
   }
