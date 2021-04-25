@@ -64,11 +64,11 @@ class _MyAppState extends State<FamilyDetailsPage> {
                 margin: EdgeInsets.only(right: 10),
                 child: SizedBox(
                     child: TextButton(
-                        child: Text("Edit".toUpperCase(),
+                        child: Text("Edit",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.normal)),
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
                                 Color(0xFFB497D6)),
@@ -86,11 +86,11 @@ class _MyAppState extends State<FamilyDetailsPage> {
                 margin: EdgeInsets.only(right: 10),
                 child: SizedBox(
                     child: TextButton(
-                        child: Text("Delete".toUpperCase(),
+                        child: Text("Delete",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.normal)),
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
                                 Color(0xFFD72638)),

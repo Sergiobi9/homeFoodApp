@@ -59,11 +59,11 @@ class _MyAppState extends State<ItemListPage> {
                 margin: EdgeInsets.only(right: 10),
                 child: SizedBox(
                     child: TextButton(
-                        child: Text("Add category".toUpperCase(),
+                        child: Text("Add category",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.normal)),
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
                                 Color(0xFF274060)),
@@ -81,22 +81,22 @@ class _MyAppState extends State<ItemListPage> {
                 margin: EdgeInsets.only(left: 10),
                 child: SizedBox(
                     child: TextButton(
-                        child: Text("Add location".toUpperCase(),
+                        child: Text("Add location",
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.normal)),
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFFD72638)),
+                                Color(0xFFC16E70)),
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color(0xFFD72638)),
+                                Color(0xFFC16E70)),
                             shape: MaterialStateProperty.all<
                                     RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25.0),
                                     side:
-                                        BorderSide(color: Color(0xFFD72638))))),
+                                        BorderSide(color: Color(0xFFC16E70))))),
                         onPressed: () => {null})))
           ]),
     );
@@ -178,11 +178,11 @@ class _MyAppState extends State<ItemListPage> {
           margin: EdgeInsets.only(top: 25, bottom: 25),
           child: SizedBox(
               child: TextButton(
-                  child: Text("Add item".toUpperCase(),
+                  child: Text("Add item",
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.white,
-                          fontWeight: FontWeight.bold)),
+                          fontWeight: FontWeight.normal)),
                   style: ButtonStyle(
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Color(0xFFE18335)),
@@ -220,12 +220,12 @@ class _MyAppState extends State<ItemListPage> {
                                           EdgeInsets.only(top: 25, bottom: 25),
                                       child: SizedBox(
                                           child: TextButton(
-                                              child: Text("Add item".toUpperCase(),
+                                              child: Text("Add item",
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.white,
                                                       fontWeight:
-                                                          FontWeight.bold)),
+                                                          FontWeight.normal)),
                                               style: ButtonStyle(
                                                   foregroundColor: MaterialStateProperty.all<Color>(
                                                       Color(0xFFE18335)),

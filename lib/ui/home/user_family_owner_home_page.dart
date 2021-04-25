@@ -45,7 +45,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
               } else if (index == 2) {
                 return categoriesBtn(context);
               } else if (index == 3) {
-                return supermarketsBtn(context);
+                return locationsBtn(context);
               } else {
                 return newsBtn(context);
               }
@@ -58,11 +58,11 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
             top: 25.0, bottom: 25.0, left: 5.0, right: 5.0),
         child: SizedBox(
           child: TextButton(
-              child: Text("categories".toUpperCase(),
+              child: Text("Categories",
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontWeight: FontWeight.normal)),
               style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsets>(
                       EdgeInsets.only(right: 50, left: 50)),
@@ -78,17 +78,17 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
         ));
   }
 
-  Widget supermarketsBtn(context) {
+  Widget locationsBtn(context) {
     return Container(
         margin: const EdgeInsets.only(
             top: 25.0, bottom: 25.0, left: 5.0, right: 5.0),
         child: SizedBox(
           child: TextButton(
-              child: Text("supermarkets".toUpperCase(),
+              child: Text("Locations",
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontWeight: FontWeight.normal)),
               style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsets>(
                       EdgeInsets.only(right: 50, left: 50)),
@@ -126,11 +126,11 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
             top: 25.0, bottom: 25.0, left: 5.0, right: 5.0),
         child: SizedBox(
           child: TextButton(
-              child: Text("items list".toUpperCase(),
+              child: Text("Items list",
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontWeight: FontWeight.normal)),
               style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsets>(
                       EdgeInsets.only(right: 50, left: 50)),
@@ -152,11 +152,11 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
             top: 25.0, bottom: 25.0, left: 5.0, right: 5.0),
         child: SizedBox(
           child: TextButton(
-              child: Text("news".toUpperCase(),
+              child: Text("News",
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontWeight: FontWeight.normal)),
               style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsets>(
                       EdgeInsets.only(right: 50, left: 50)),
@@ -178,11 +178,11 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
             top: 25.0, bottom: 25.0, left: 25.0, right: 5.0),
         child: SizedBox(
           child: TextButton(
-              child: Text("Family".toUpperCase(),
+              child: Text("Family",
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                      fontWeight: FontWeight.normal)),
               style: ButtonStyle(
                   padding: MaterialStateProperty.all<EdgeInsets>(
                       EdgeInsets.only(right: 50, left: 50)),
