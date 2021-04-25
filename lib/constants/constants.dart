@@ -14,4 +14,6 @@ class Constants {
   static const String CATEGORY_EXISTS = "Category already exists";
   static const String ITEM_LOCATION_EXISTS = "Item location already exists";
 
+  static const int ITEM_UNDEFINED_AVAILABILITY = -1, ITEM_NO_AVAILABILITY = 0, ITEM_POOR_AVAILABILITY = 1, ITEM_FULL_AVAILABILITY = 2;
+
 }

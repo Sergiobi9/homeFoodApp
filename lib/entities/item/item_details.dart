@@ -1,4 +1,5 @@
 class ItemDetails {
+  
   String id;
   String name = "";
   String creatorFirstName;

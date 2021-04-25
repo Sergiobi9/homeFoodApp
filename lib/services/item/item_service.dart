@@ -33,7 +33,6 @@ class ItemService {
   }
 
   Future<dynamic> registerItemToCategory(Item item, String categoryId) async {
-
     item.name = Utils.capitalize(item.name);
     String userId = "";
 
@@ -48,7 +47,9 @@ class ItemService {
 
     final response = await http.post(
         Uri.http(itemEndpoint, "item/register/categoryId/${categoryId}"),
-        headers: {"Content-Type": "application/json",},
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: itemBody);
 
     if (response.statusCode == 200) {
@@ -62,7 +63,36 @@ class ItemService {
     }
   }
 
-    Future<dynamic> getItemDetailsByItemId(String itemId) async {
+  Future<dynamic> getItemDetailsByItemId(String itemId) async {
+    final response = await http.get(
+        Uri.http(itemEndpoint, "item/detailed/itemId/${itemId}"),
+        headers: {
+          "Content-Type": "application/json",
+        });
 
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(utf8.decode(response.bodyBytes));
+      return decodedData;
+    } else {
+      return null;
     }
+  }
+
+  Future<dynamic> updateItemAvailability(String itemId, int availability) async {
+
+    final response = await http.put(
+        Uri.http(itemEndpoint,
+            "item/update/itemId/${itemId}/availability/${availability}"),
+        headers: {
+          "Content-Type": "application/json",
+        });
+
+    print(response.statusCode.toString());
+    if (response.statusCode == 200) {
+      final decodedData = json.decode(utf8.decode(response.bodyBytes));
+      return decodedData;
+    } else {
+      return null;
+    }
+  }
 }
