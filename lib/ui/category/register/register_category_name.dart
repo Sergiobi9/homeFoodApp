@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/services/category/category_service.dart';
-import 'package:home_food_project/ui/family/register/register_family.dart';
-import 'package:home_food_project/ui/family/register/register_family_members.dart';
-import 'package:home_food_project/ui/food/food_list.dart';
+import 'package:home_food_project/ui/item/item_list.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class RegisterCategoryNamePage extends StatelessWidget {
@@ -79,7 +77,7 @@ class RegisterCategoryNamePage extends StatelessWidget {
 
   void redirectFoodList(context) {
     Utils.showToast("Category added");
-    Utils.navigatePage(context, FoodListPage());
+    Utils.navigatePage(context, ItemListPage());
   }
 
   Widget categoryNameInput() {

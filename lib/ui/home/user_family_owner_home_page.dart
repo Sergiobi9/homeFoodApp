@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/ui/family/family_details.dart';
-import 'package:home_food_project/ui/family/register/register_family_name.dart';
-import 'package:home_food_project/ui/food/food_list.dart';
+import 'package:home_food_project/ui/item/item_list.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class UserFamilyOwnerHomePage extends StatelessWidget {
@@ -128,7 +126,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
             top: 25.0, bottom: 25.0, left: 5.0, right: 5.0),
         child: SizedBox(
           child: TextButton(
-              child: Text("food list".toUpperCase(),
+              child: Text("items list".toUpperCase(),
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
@@ -144,7 +142,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Color(0xFFE18335))))),
-              onPressed: () => {foodList(context)}),
+              onPressed: () => {itemsList(context)}),
         ));
   }
 
@@ -204,8 +202,8 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
     Utils.navigateToNewScreen(context, FamilyDetailsPage());
   }
 
-   void foodList(context){
-    Utils.navigateToNewScreen(context, FoodListPage());
+   void itemsList(context){
+    Utils.navigateToNewScreen(context, ItemListPage());
   }
 
   Widget recentActivityText() {

@@ -1,7 +1,7 @@
 import 'package:home_food_project/utils/date_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'category_food_register.dart';
+import 'category_item_register.dart';
 
 @JsonSerializable()
 class Category {
@@ -11,14 +11,14 @@ class Category {
   String familyId = "";
   String creatorUserId = "";
   String dateAdded = "";
-  List<CategoryFoodRegister> foodItems;
+  List<CategoryItemRegister> items;
 
   Category(String name, String familyId, String creatorUserId) {
     this.name = name;
     this.familyId = familyId;
     this.creatorUserId = creatorUserId;
     this.dateAdded = DateUtilsHelper.timeStamp();
-    this.foodItems = [];
+    this.items = [];
   }
 
   Category.fromJsonMap(Map<String, dynamic> json) {
@@ -27,7 +27,7 @@ class Category {
     familyId = json['familyId'];
     creatorUserId = json['creatorUserId'];
     dateAdded = json['dateAdded'];
-    foodItems = json['foodItems'];
+    items = json['items'];
   }
 
   Map toJson() => {
@@ -36,6 +36,6 @@ class Category {
         'familyId': familyId,
         'creatorUserId': creatorUserId,
         'dateAdded': dateAdded,
-        'foodItems':foodItems,
+        'items':items,
       };
 }
