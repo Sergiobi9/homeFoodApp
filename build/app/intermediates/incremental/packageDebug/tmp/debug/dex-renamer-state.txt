@@ -1,4 +1,4 @@
-#Sat Apr 24 18:08:53 CEST 2021
+#Sun Apr 25 13:53:53 CEST 2021
 base.0=/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

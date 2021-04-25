@@ -20,82 +20,111 @@
 16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 16-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:6:5-80
 16-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:6:22-77
-17
-18    <application
-18-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:8:4-47:19
-19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-19-->[androidx.core:core:1.1.0] /Users/sergiobi23/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:18-86
-20        android:debuggable="true"
-21        android:icon="@mipmap/launcher_icon"
-21-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:12:9-45
-22        android:label="HomeFood"
-22-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:9:9-33
-23        android:requestLegacyExternalStorage="true"
-23-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:11:9-52
-24        android:usesCleartextTraffic="true" >
-24-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:10:9-44
-25        <activity
-25-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:13:9-41:20
-26            android:name="com.example.home_food_project.MainActivity"
-26-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:14:13-41
-27            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-27-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:17:13-163
-28            android:hardwareAccelerated="true"
-28-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:18:13-47
-29            android:launchMode="singleTop"
-29-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:15:13-43
-30            android:theme="@style/LaunchTheme"
-30-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:16:13-47
-31            android:windowSoftInputMode="adjustResize" >
-31-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:19:13-55
-32
-33            <!--
-34                 Specifies an Android theme to apply to this Activity as soon as
-35                 the Android process has started. This theme is visible to the user
-36                 while the Flutter UI initializes. After that, this theme continues
-37                 to determine the Window background behind the Flutter UI.
-38            -->
-39            <meta-data
-39-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:24:13-27:17
-40                android:name="io.flutter.embedding.android.NormalTheme"
-40-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:25:15-70
-41                android:resource="@style/NormalTheme" />
-41-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:26:15-52
-42            <!--
-43                 Displays an Android View that continues showing the launch screen
-44                 Drawable until Flutter paints its first frame, then this splash
-45                 screen fades out. A splash screen is useful to avoid any visual
-46                 gap between the end of Android's launch screen and the painting of
-47                 Flutter's first frame.
-48            -->
-49            <meta-data
-49-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:33:13-36:17
-50                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-50-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:34:15-79
-51                android:resource="@drawable/launch_background" />
-51-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:35:15-61
-52
-53            <intent-filter>
-53-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:37:13-40:29
-54                <action android:name="android.intent.action.MAIN" />
-54-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:38:17-68
-54-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:38:25-66
-55
-56                <category android:name="android.intent.category.LAUNCHER" />
-56-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:39:17-76
-56-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:39:27-74
-57            </intent-filter>
-58        </activity>
-59        <!--
-60             Don't delete the meta-data below.
-61             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-62        -->
-63        <meta-data
-63-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:44:9-46:33
-64            android:name="flutterEmbedding"
-64-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:45:13-44
-65            android:value="2" />
-65-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:46:13-30
-66    </application>
-67
-68</manifest>
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:5-81
+17-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:8:22-78
+18
+19    <application
+19-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:8:4-54:19
+20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+20-->[androidx.core:core:1.1.0] /Users/sergiobi23/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:18-86
+21        android:debuggable="true"
+22        android:icon="@mipmap/launcher_icon"
+22-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:12:9-45
+23        android:label="HomeFood"
+23-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:9:9-33
+24        android:requestLegacyExternalStorage="true"
+24-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:11:9-52
+25        android:usesCleartextTraffic="true" >
+25-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:10:9-44
+26        <activity
+26-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:13:9-42:20
+27            android:name="com.example.home_food_project.MainActivity"
+27-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:14:13-41
+28            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+28-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:17:13-163
+29            android:hardwareAccelerated="true"
+29-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:18:13-47
+30            android:launchMode="singleTop"
+30-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:15:13-43
+31            android:theme="@style/LaunchTheme"
+31-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:16:13-47
+32            android:windowSoftInputMode="adjustResize" >
+32-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:19:13-55
+33
+34            <!--
+35                 Specifies an Android theme to apply to this Activity as soon as
+36                 the Android process has started. This theme is visible to the user
+37                 while the Flutter UI initializes. After that, this theme continues
+38                 to determine the Window background behind the Flutter UI.
+39            -->
+40            <meta-data
+40-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:24:13-27:17
+41                android:name="io.flutter.embedding.android.NormalTheme"
+41-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:25:15-70
+42                android:resource="@style/NormalTheme" />
+42-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:26:15-52
+43            <!--
+44                 Displays an Android View that continues showing the launch screen
+45                 Drawable until Flutter paints its first frame, then this splash
+46                 screen fades out. A splash screen is useful to avoid any visual
+47                 gap between the end of Android's launch screen and the painting of
+48                 Flutter's first frame.
+49            -->
+50            <meta-data
+50-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:33:13-36:17
+51                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+51-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:34:15-79
+52                android:resource="@drawable/launch_background" />
+52-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:35:15-61
+53
+54            <intent-filter>
+54-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:37:13-40:29
+55                <action android:name="android.intent.action.MAIN" />
+55-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:38:17-68
+55-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:38:25-66
+56
+57                <category android:name="android.intent.category.LAUNCHER" />
+57-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:39:17-76
+57-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:39:27-74
+58            </intent-filter>
+59        </activity>
+60        <activity
+60-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:45:16-48:71
+61            android:name="com.yalantis.ucrop.UCropActivity"
+61-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:46:13-60
+62            android:screenOrientation="portrait"
+62-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:47:13-49
+63            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+63-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:48:13-69
+64        <!--
+65             Don't delete the meta-data below.
+66             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+67        -->
+68        <meta-data
+68-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:51:9-53:33
+69            android:name="flutterEmbedding"
+69-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:52:13-44
+70            android:value="2" />
+70-->/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/AndroidManifest.xml:53:13-30
+71
+72        <provider
+72-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:11:9-19:20
+73            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+73-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-82
+74            android:authorities="com.example.home_food_project.flutter.image_provider"
+74-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-74
+75            android:exported="false"
+75-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+76            android:grantUriPermissions="true" >
+76-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-47
+77            <meta-data
+77-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-18:75
+78                android:name="android.support.FILE_PROVIDER_PATHS"
+78-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:17:17-67
+79                android:resource="@xml/flutter_image_picker_file_paths" />
+79-->[:image_picker] /Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-72
+80        </provider>
+81    </application>
+82
+83</manifest>

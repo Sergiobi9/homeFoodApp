@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/entities/family/family_member_detailed.dart';
+import 'package:home_food_project/entities/food/food_item.dart';
+import 'package:home_food_project/entities/food/food_list.dart';
 import 'package:home_food_project/services/family/family_member_service.dart';
+import 'package:home_food_project/services/food/food_service.dart';
 import 'package:home_food_project/ui/category/register/register_category_name.dart';
+import 'package:home_food_project/ui/food/register/register_food_name.dart';
 import 'package:home_food_project/utils/shared_preferences.dart';
 import 'package:home_food_project/utils/utils.dart';
 
@@ -12,12 +16,9 @@ class FoodListPage extends StatefulWidget {
 }
 
 class _MyAppState extends State<FoodListPage> {
-  TextEditingController familyMemberEmailController =
-      new TextEditingController();
 
-  List<FamilyMemberDetailed> familyMembers = [];
-
-  String userEmail;
+  List<FoodList> foodList = [];
+  String familyId;
 
   @override
   Widget build(BuildContext context) {
@@ -32,21 +33,13 @@ class _MyAppState extends State<FoodListPage> {
         future: FamilyMemberService().getFamilyMembers(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
-            familyMembers = [];
-
-            String familyId = snapshot.data['familyId'];
+            familyId = snapshot.data['familyId'];
             String familyName = snapshot.data['familyName'];
-
-            for (var member in snapshot.data['familyMembersDetailed']) {
-              final familyMember = new FamilyMemberDetailed.fromJsonMap(member);
-              familyMembers.add(familyMember);
-            }
 
             return Column(children: <Widget>[
               familyNameText(familyName),
               manageCategoriesAndSupermarketsButtons(familyId),
-              membersText(),
-              membersAddedList(),
+              categoriesAndFood(familyId),
             ]);
           } else {
             return Container();
@@ -82,7 +75,7 @@ class _MyAppState extends State<FoodListPage> {
                                     borderRadius: BorderRadius.circular(25.0),
                                     side:
                                         BorderSide(color: Color(0xFF274060))))),
-                        onPressed: () => { addNewCategory(familyId)}))),
+                        onPressed: () => {addNewCategory(familyId)}))),
             Container(
                 width: MediaQuery.of(context).size.width * 0.43,
                 margin: EdgeInsets.only(left: 10),
@@ -109,8 +102,9 @@ class _MyAppState extends State<FoodListPage> {
     );
   }
 
-  void addNewCategory(familyId){
-    Utils.navigateToNewScreen(context, RegisterCategoryNamePage(familyId: familyId));
+  void addNewCategory(familyId) {
+    Utils.navigateToNewScreen(
+        context, RegisterCategoryNamePage(familyId: familyId));
   }
 
   Widget familyNameText(String familyName) {
@@ -129,26 +123,130 @@ class _MyAppState extends State<FoodListPage> {
     );
   }
 
-  Widget membersAddedList() {
+  Widget categoriesAndFood(familyId) {
+    return FutureBuilder(
+        future: FoodService().getFoodListWithCategories(familyId),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<FoodList>> snapshot) {
+          print(snapshot.hasData.toString());
+          if (snapshot.hasData) {
+            foodList = snapshot.data;
+            print(snapshot.data);
+            return Container(
+                margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
+                height: MediaQuery.of(context).size.height,
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: foodList.length,
+                    itemBuilder: (context, index) {
+                      return new GestureDetector(
+                          child: Container(
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(children: [
+                                    categoryName(foodList[index].categoryName),
+                                    categoryFoodListItems(
+                                        foodList[index].foodItems,
+                                        foodList[index].categoryId,
+                                        foodList[index].categoryName)
+                                  ]))));
+                    }));
+          } else {
+            return Container();
+          }
+        });
+  }
+
+  Widget categoryName(categoryName) {
     return Container(
-        margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
-        height: MediaQuery.of(context).size.height * 0.40,
-        child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: familyMembers.length,
-            itemBuilder: (context, index) {
-              return new GestureDetector(
-                  child: Container(
-                      child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: familyMemberInfo(
-                              context, familyMembers[index], index))));
-            }));
+      margin: EdgeInsets.only(top: 25.0, right: 15.0),
+      alignment: Alignment.centerLeft,
+      child: Text(
+        categoryName,
+        style: TextStyle(
+            color: Color(0xff333333),
+            fontSize: 22,
+            fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  categoryFoodListItems(
+      List<FoodItem> items, String categoryId, String categoryName) {
+    if (items.length == 0) {
+      return Container(
+          width: MediaQuery.of(context).size.width * 0.43,
+          margin: EdgeInsets.only(top: 25, bottom: 25),
+          child: SizedBox(
+              child: TextButton(
+                  child: Text("Add food".toUpperCase(),
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
+                  style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Color(0xFFE18335)),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Color(0xFFE18335)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              side: BorderSide(color: Color(0xFFE18335))))),
+                  onPressed: () =>
+                      {addFoodToCategory(categoryId, categoryName)})));
+    } else {
+      return Container(
+          margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
+          height: MediaQuery.of(context).size.height,
+          child: Column(children: [
+            ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return new GestureDetector(
+                      child: Container(
+                          child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(children: [
+                                Text(items[index].name),
+                                if (index == items.length - 1)
+                                  Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.43,
+                                      margin:
+                                          EdgeInsets.only(top: 25, bottom: 25),
+                                      child: SizedBox(
+                                          child: TextButton(
+                                              child: Text("Add food".toUpperCase(),
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              style: ButtonStyle(
+                                                  foregroundColor: MaterialStateProperty.all<Color>(
+                                                      Color(0xFFE18335)),
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all<Color>(
+                                                          Color(0xFFE18335)),
+                                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0), side: BorderSide(color: Color(0xFF000000))))),
+                                              onPressed: () => {addFoodToCategory(categoryId, categoryName)})))
+                              ]))));
+                }),
+          ]));
+    }
+  }
+
+  dynamic addFoodToCategory(categoryId, categoryName) {
+    Utils.navigateToNewScreen(
+        context, RegisterFoodNamePage(familyId: familyId, categoryId: categoryId, categoryName: categoryName));
   }
 
   removeUserFromFamily(index) {
     setState(() {
-      familyMembers.removeAt(index);
+      foodList.removeAt(index);
     });
   }
 

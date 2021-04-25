@@ -12,4 +12,6 @@ class Constants {
   static const String SUCCESS = "success";
 
   static const String CATEGORY_EXISTS = "Category already exists";
+  static const String FOOD_LOCATION_EXISTS = "Food location already exists";
+
 }

@@ -16,12 +16,12 @@
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-xhdpi_ic_launcher_foreground.png.flat",
-        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-xhdpi/ic_launcher_foreground.png"
-    },
-    {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-hdpi_ic_launcher_background.png.flat",
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-hdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-xhdpi/ic_launcher_foreground.png"
     },
     {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-xxhdpi_ic_launcher_background.png.flat",
@@ -36,12 +36,12 @@
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-xhdpi/ic_launcher_background.png"
     },
     {
-        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-hdpi_launcher_icon.png.flat",
-        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/mipmap-hdpi/launcher_icon.png"
-    },
-    {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-v21_launch_background.xml.flat",
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-v21/launch_background.xml"
+    },
+    {
+        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-hdpi_launcher_icon.png.flat",
+        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/mipmap-hdpi/launcher_icon.png"
     },
     {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
@@ -68,24 +68,24 @@
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-mdpi/ic_launcher_background.png"
     },
     {
-        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
-    },
-    {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-xxxhdpi_launcher_icon.png.flat",
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/mipmap-xxxhdpi/launcher_icon.png"
+    },
+    {
+        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
     {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-xxxhdpi_ic_launcher_background.png.flat",
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-xxxhdpi/ic_launcher_background.png"
     },
     {
-        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-mdpi_ic_launcher_foreground.png.flat",
-        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png"
-    },
-    {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-xhdpi_launcher_icon.png.flat",
         "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/mipmap-xhdpi/launcher_icon.png"
+    },
+    {
+        "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/drawable-mdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png"
     },
     {
         "merged": "/Users/sergiobi23/Documents/HomeFood/HomeFoodProject/homeFoodApp/build/app/intermediates/res/merged/debug/mipmap-mdpi_launcher_icon.png.flat",
