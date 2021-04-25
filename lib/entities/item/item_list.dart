@@ -1,10 +1,10 @@
-import 'item_detail.dart';
+import 'item_details.dart';
 
 class ItemList {
 
   String categoryId;
   String categoryName = "";
-  List<ItemDetail> itemDetails = [];
+  List<ItemDetails> itemDetails = [];
 
   ItemList() {}
 
@@ -13,7 +13,7 @@ class ItemList {
     categoryName = json['categoryName'];
 
     for (var item in json['itemDetails']){
-      itemDetails.add(ItemDetail.fromJsonMap(item));
+      itemDetails.add(ItemDetails.fromJsonMap(item));
     }
   }
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:home_food_project/constants/constants.dart';
-import 'package:home_food_project/entities/family/family_member_detailed.dart';
-import 'package:home_food_project/entities/item/item_detail.dart';
+import 'package:home_food_project/entities/item/item_details.dart';
 import 'package:home_food_project/entities/item/item_list.dart';
 import 'package:home_food_project/services/family/family_member_service.dart';
 import 'package:home_food_project/services/item/item_service.dart';
 import 'package:home_food_project/ui/category/register/register_category_name.dart';
 import 'package:home_food_project/ui/item/register/register_item_name.dart';
 import 'package:home_food_project/utils/utils.dart';
+
+import 'details/item_details.dart';
 
 class ItemListPage extends StatefulWidget {
   @override
@@ -81,7 +81,7 @@ class _MyAppState extends State<ItemListPage> {
                 margin: EdgeInsets.only(left: 10),
                 child: SizedBox(
                     child: TextButton(
-                        child: Text("Add supermarket".toUpperCase(),
+                        child: Text("Add location".toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
@@ -129,7 +129,7 @@ class _MyAppState extends State<ItemListPage> {
         builder:
             (BuildContext context, AsyncSnapshot<List<ItemList>> snapshot) {
           if (snapshot.hasData) {
-            itemList= snapshot.data;
+            itemList = snapshot.data;
             return Container(
                 margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
                 child: ListView.builder(
@@ -170,7 +170,7 @@ class _MyAppState extends State<ItemListPage> {
   }
 
   categoryItemListItems(
-      List<ItemDetail> items, String categoryId, String categoryName) {
+      List<ItemDetails> items, String categoryId, String categoryName) {
     print(items.length);
     if (items.length == 0) {
       return Container(
@@ -204,6 +204,9 @@ class _MyAppState extends State<ItemListPage> {
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return new GestureDetector(
+                    onTap: (){
+                      showItemInfo(items[index].id);
+                    },
                       child: Container(
                           child: Padding(
                               padding: const EdgeInsets.all(2.0),
@@ -217,7 +220,7 @@ class _MyAppState extends State<ItemListPage> {
                                           EdgeInsets.only(top: 25, bottom: 25),
                                       child: SizedBox(
                                           child: TextButton(
-                                              child: Text("Add food".toUpperCase(),
+                                              child: Text("Add item".toUpperCase(),
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.white,
@@ -238,19 +241,26 @@ class _MyAppState extends State<ItemListPage> {
     }
   }
 
-  Widget getItemInfo(ItemDetail food) {
+  showItemInfo(String itemId){
+     Utils.navigateToNewScreen(
+        context,
+        ItemDetailsPage(
+            itemId: itemId));
+  }
+
+  Widget getItemInfo(ItemDetails item) {
     return Container(
-      alignment: Alignment.centerLeft,
+        alignment: Alignment.centerLeft,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
-      children: [itemImage(), getItemName(food)],
-    ));
+          children: [itemImage(), getItemName(item)],
+        ));
   }
 
-  getItemName(ItemDetail food) {
+  getItemName(ItemDetails item) {
     return Container(
-      width: MediaQuery.of(context).size.height * 0.2,
+      width: MediaQuery.of(context).size.height * 0.22,
       margin: EdgeInsets.only(left: 25),
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -258,7 +268,7 @@ class _MyAppState extends State<ItemListPage> {
           children: [
             Container(
                 margin: EdgeInsets.all(5.0),
-                child: Text(food.name,
+                child: Text(item.name,
                     textAlign: TextAlign.start,
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold))),

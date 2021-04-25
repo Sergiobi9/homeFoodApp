@@ -61,4 +61,8 @@ class ItemService {
       return Constants.RESPONSE_NOT_SUCCESS;
     }
   }
+
+    Future<dynamic> getItemDetailsByItemId(String itemId) async {
+
+    }
 }
