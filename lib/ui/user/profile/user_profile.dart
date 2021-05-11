@@ -21,7 +21,7 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
         Scaffold(
             backgroundColor: Colors.transparent,
             body: SafeArea(
-                child: SingleChildScrollView(
+                child: Center(
               child: getUserInfo(bodyHeight),
             )))
       ],
@@ -30,13 +30,12 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
 
   Widget getUserInfo(bodyHeight) {
     return Container(
-        alignment: Alignment.topCenter,
+        alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            getProfilePicture(bodyHeight),
-            getUserFullName(),
+            //getProfilePicture(bodyHeight),
             logoutBtn(),
           ],
         ));
@@ -47,7 +46,7 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
         margin: const EdgeInsets.only(
             top: 10.0, bottom: 10.0, left: 25.0, right: 25.0),
         child: SizedBox(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width * 0.7,
           child: TextButton(
               child: Text("Sign out".toUpperCase(),
                   style: TextStyle(
@@ -56,14 +55,14 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
                       fontWeight: FontWeight.bold)),
               style: ButtonStyle(
                   padding:
-                      MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(25)),
+                      MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20)),
                   foregroundColor:
                       MaterialStateProperty.all<Color>(Colors.black),
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.black),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          borderRadius: BorderRadius.circular(40.0),
                           side: BorderSide(color: Colors.black)))),
               onPressed: () => {doLogout()}),
         ));
@@ -75,16 +74,6 @@ class UserProfilePageImplementation extends State<UserProfilePage> {
     await SharedPref().saveStringToStorage("userId", "");
     await SharedPref().saveObjectToStorage("userSession", null);
     Utils.navigatePage(context, LoginPage());
-  }
-
-  Widget getUserFullName() {
-    return Container(
-        margin: const EdgeInsets.only(top: 20.0, bottom: 25.0),
-        child: Text("Sergi Obiols Olcina",
-            style: new TextStyle(
-                fontSize: 32.0,
-                color: Color(0xff555555),
-                fontWeight: FontWeight.w500)));
   }
 
   Widget getProfilePicture(bodyHeight) {

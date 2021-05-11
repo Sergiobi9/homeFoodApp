@@ -61,16 +61,16 @@ class _MyAppState extends State<ItemListPage> {
 
   Widget backIcon() {
     return Container(
-      alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(left: 10),
-      child:  IconButton(
-        icon: Icon(
-          Icons.arrow_back_outlined,
-          size: 30,
-        ),
-        onPressed: () {
-          goMain();
-        }));
+        alignment: Alignment.topLeft,
+        margin: EdgeInsets.only(left: 10),
+        child: IconButton(
+            icon: Icon(
+              Icons.arrow_back_outlined,
+              size: 30,
+            ),
+            onPressed: () {
+              goMain();
+            }));
   }
 
   manageCategoriesAndSupermarketsButtons(String familyId) {
@@ -306,7 +306,7 @@ class _MyAppState extends State<ItemListPage> {
     return Stack(
       children: [
         Container(
-            width: MediaQuery.of(context).size.width * 0.15,
+            width: MediaQuery.of(context).size.width * 0.2,
             height: MediaQuery.of(context).size.width * 0.15,
             child: Image.asset(
               getItemImage(),
@@ -335,7 +335,7 @@ class _MyAppState extends State<ItemListPage> {
 
   Widget buyItemImage(bodyHeight) {
     return Container(
-      width: bodyHeight * 0.19,
+      width: bodyHeight * 0.2,
       height: bodyHeight * 0.15,
       child: Align(
           alignment: Alignment.topRight,

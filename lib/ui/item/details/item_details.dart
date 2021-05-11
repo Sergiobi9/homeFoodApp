@@ -31,10 +31,32 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(child: getItemDetails()));
+    return WillPopScope(
+        onWillPop: () {
+          goMain();
+        },
+        child: Scaffold(
+            backgroundColor: Colors.white,
+            resizeToAvoidBottomInset: false,
+            body: SafeArea(child: getItemDetails())));
+  }
+
+  Widget backIcon() {
+    return Container(
+        alignment: Alignment.topLeft,
+        margin: EdgeInsets.only(left: 10),
+        child: IconButton(
+            icon: Icon(
+              Icons.arrow_back_outlined,
+              size: 30,
+            ),
+            onPressed: () {
+              goMain();
+            }));
+  }
+
+  goMain() {
+    Utils.navigatePage(context, ItemListPage());
   }
 
   Widget getItemDetails() {
@@ -61,6 +83,7 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
 
             return SingleChildScrollView(
                 child: Column(children: <Widget>[
+              backIcon(),
               itemQuestion(),
               getItemPhoto(context),
               createdDetails(),
@@ -425,7 +448,7 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
 
   Widget itemQuestion() {
     return Container(
-      margin: EdgeInsets.only(top: 25.0, bottom: 25.0, left: 25.0, right: 15.0),
+      margin: EdgeInsets.only(top: 10.0, bottom: 25.0, left: 25.0, right: 15.0),
       alignment: Alignment.centerLeft,
       child: Text(
         itemDetails.name,
