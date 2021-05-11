@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:home_food_project/constants/constants.dart';
+import 'package:home_food_project/entities/category/category.dart';
 import 'package:home_food_project/entities/item/item_details.dart';
 import 'package:home_food_project/entities/item/item_list.dart';
+import 'package:home_food_project/services/category/category_service.dart';
 import 'package:home_food_project/services/family/family_member_service.dart';
 import 'package:home_food_project/services/item/item_service.dart';
 import 'package:home_food_project/ui/category/register/register_category_name.dart';
@@ -168,7 +171,7 @@ class _MyAppState extends State<ItemListPage> {
                               child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(children: [
-                                    categoryName(itemList[index].categoryName),
+                                    categoryInfo(itemList[index]),
                                     categoryItemListItems(
                                         itemList[index].itemDetails,
                                         itemList[index].categoryId,
@@ -181,18 +184,45 @@ class _MyAppState extends State<ItemListPage> {
         });
   }
 
-  Widget categoryName(categoryName) {
-    return Container(
-      margin: EdgeInsets.only(top: 5.0, right: 15.0),
-      alignment: Alignment.centerLeft,
-      child: Text(
-        categoryName == "" ? "Others" : categoryName,
-        style: TextStyle(
-            color: Color(0xff333333),
-            fontSize: 22,
-            fontWeight: FontWeight.bold),
-      ),
+  Widget categoryInfo(ItemList itemList) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width * 0.65,
+          margin: EdgeInsets.only(top: 5.0, right: 15.0),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            itemList.categoryName == "" ? "Others" : itemList.categoryName,
+            style: TextStyle(
+                color: Color(0xff333333),
+                fontSize: 22,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        if (itemList.categoryName != "") Container(
+            margin: EdgeInsets.only(left: 10),
+            child: IconButton(
+                icon: Icon(
+                  Icons.delete,
+                  size: 25,
+                ),
+                onPressed: () {
+                  deleteCategory(itemList.categoryId);
+                }))
+      ],
     );
+  }
+
+  deleteCategory(categoryId){
+    CategoryService().deleteCategoryById(categoryId).then((value) => {
+      if (value == Constants.SUCCESS){
+        Utils.navigatePage(context, ItemListPage())
+      } else{
+        Utils.showToast("Something went wrong, try again later")
+      }
+    });
   }
 
   categoryItemListItems(

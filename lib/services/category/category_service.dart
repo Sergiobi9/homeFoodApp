@@ -10,7 +10,6 @@ class CategoryService {
   String categoryEndpoint = ApiProvider().getApiUrl();
 
   Future<dynamic> registerCategory(String familyId, String categoryName) async {
-
     categoryName = Utils.capitalize(categoryName);
     String userId = "";
 
@@ -34,6 +33,21 @@ class CategoryService {
       } else {
         return Constants.RESPONSE_NOT_SUCCESS;
       }
+    } else {
+      return Constants.RESPONSE_NOT_SUCCESS;
+    }
+  }
+
+  Future<dynamic> deleteCategoryById(String categoryId) async {
+    final response = await http.delete(
+      Uri.http(categoryEndpoint, "category/categoryId/$categoryId"),
+      headers: {"Content-Type": "application/json"},
+    );
+
+    print(response.statusCode);
+
+    if (response.statusCode == 200) {
+      return Constants.SUCCESS;
     } else {
       return Constants.RESPONSE_NOT_SUCCESS;
     }
