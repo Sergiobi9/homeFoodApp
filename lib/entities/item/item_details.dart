@@ -1,10 +1,10 @@
 class ItemDetails {
-  
   String id;
   String name = "";
   String creatorFirstName;
   String creatorLastName;
   String registeredDate;
+  double price;
   int availability;
 
   ItemDetails() {}
@@ -15,6 +15,7 @@ class ItemDetails {
     creatorFirstName = json['creatorFirstName'];
     creatorLastName = json['creatorLastName'];
     registeredDate = json['registeredDate'];
+    price = json['price'];
     availability = json['availability'];
   }
 
@@ -24,6 +25,7 @@ class ItemDetails {
         'creatorFirstName': creatorFirstName,
         'creatorLastName': creatorLastName,
         'registeredDate': registeredDate,
+        'price': price,
         'availability': availability,
       };
 }

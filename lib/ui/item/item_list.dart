@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:home_food_project/entities/item/item_details.dart';
 import 'package:home_food_project/entities/item/item_list.dart';
@@ -20,10 +22,19 @@ class _MyAppState extends State<ItemListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(child: SingleChildScrollView(child: getFamilyInfo())));
+    return WillPopScope(
+        onWillPop: () {
+          goMain();
+        },
+        child: Scaffold(
+            backgroundColor: Colors.white,
+            resizeToAvoidBottomInset: false,
+            body: SafeArea(
+                child: SingleChildScrollView(child: getFamilyInfo()))));
+  }
+
+  goMain() {
+    Utils().filterUser(context);
   }
 
   Widget getFamilyInfo() {
@@ -35,6 +46,7 @@ class _MyAppState extends State<ItemListPage> {
             String familyName = snapshot.data['familyName'];
 
             return Column(children: <Widget>[
+              backIcon(),
               familyNameText(familyName),
               manageCategoriesAndSupermarketsButtons(familyId),
               categoriesAndItems(familyId),
@@ -45,6 +57,20 @@ class _MyAppState extends State<ItemListPage> {
                 child: CircularProgressIndicator());
           }
         });
+  }
+
+  Widget backIcon() {
+    return Container(
+      alignment: Alignment.topLeft,
+            margin: EdgeInsets.only(left: 10),
+      child:  IconButton(
+        icon: Icon(
+          Icons.arrow_back_outlined,
+          size: 30,
+        ),
+        onPressed: () {
+          goMain();
+        }));
   }
 
   manageCategoriesAndSupermarketsButtons(String familyId) {
@@ -76,7 +102,7 @@ class _MyAppState extends State<ItemListPage> {
                                     side:
                                         BorderSide(color: Color(0xFF274060))))),
                         onPressed: () => {addNewCategory(familyId)}))),
-            Container(
+            /*     Container(
                 width: MediaQuery.of(context).size.width * 0.43,
                 margin: EdgeInsets.only(left: 10),
                 child: SizedBox(
@@ -97,7 +123,7 @@ class _MyAppState extends State<ItemListPage> {
                                     borderRadius: BorderRadius.circular(25.0),
                                     side:
                                         BorderSide(color: Color(0xFFC16E70))))),
-                        onPressed: () => {null})))
+                        onPressed: () => {null}))) */
           ]),
     );
   }
@@ -111,7 +137,7 @@ class _MyAppState extends State<ItemListPage> {
     bool endsWithS = familyName.toLowerCase().endsWith("s");
 
     return Container(
-      margin: EdgeInsets.only(top: 50.0, left: 25.0, right: 15.0),
+      margin: EdgeInsets.only(top: 10.0, left: 25.0, right: 15.0),
       alignment: Alignment.centerLeft,
       child: Text(
         endsWithS ? familyName + "' items list" : familyName + "'s items list",
@@ -157,7 +183,7 @@ class _MyAppState extends State<ItemListPage> {
 
   Widget categoryName(categoryName) {
     return Container(
-      margin: EdgeInsets.only(top: 25.0, right: 15.0),
+      margin: EdgeInsets.only(top: 5.0, right: 15.0),
       alignment: Alignment.centerLeft,
       child: Text(
         categoryName == "" ? "Others" : categoryName,
@@ -171,7 +197,6 @@ class _MyAppState extends State<ItemListPage> {
 
   categoryItemListItems(
       List<ItemDetails> items, String categoryId, String categoryName) {
-    print(items.length);
     if (items.length == 0) {
       return Container(
           width: MediaQuery.of(context).size.width * 0.43,
@@ -202,12 +227,14 @@ class _MyAppState extends State<ItemListPage> {
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: items.length,
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return new GestureDetector(
-                    onTap: (){
-                      showItemInfo(items[index].id);
-                    },
+                      onTap: () {
+                        showItemInfo(items[index].id);
+                      },
                       child: Container(
+                          margin: EdgeInsets.only(top: 10, bottom: 10),
                           child: Padding(
                               padding: const EdgeInsets.all(2.0),
                               child: Column(children: [
@@ -233,7 +260,9 @@ class _MyAppState extends State<ItemListPage> {
                                                       MaterialStateProperty.all<Color>(
                                                           Color(0xFFE18335)),
                                                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0), side: BorderSide(color: Color(0xFFE18335))))),
+                                                      RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(25.0),
+                                                          side: BorderSide(color: Color(0xFFE18335))))),
                                               onPressed: () => {addItemToCategory(categoryId, categoryName)})))
                               ]))));
                 }),
@@ -241,11 +270,8 @@ class _MyAppState extends State<ItemListPage> {
     }
   }
 
-  showItemInfo(String itemId){
-     Utils.navigateToNewScreen(
-        context,
-        ItemDetailsPage(
-            itemId: itemId));
+  showItemInfo(String itemId) {
+    Utils.navigateToNewScreen(context, ItemDetailsPage(itemId: itemId));
   }
 
   Widget getItemInfo(ItemDetails item) {
@@ -254,7 +280,7 @@ class _MyAppState extends State<ItemListPage> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [itemImage(), getItemName(item)],
+          children: [itemImage(item), getItemName(item)],
         ));
   }
 
@@ -263,7 +289,7 @@ class _MyAppState extends State<ItemListPage> {
       width: MediaQuery.of(context).size.height * 0.22,
       margin: EdgeInsets.only(left: 25),
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
@@ -276,17 +302,50 @@ class _MyAppState extends State<ItemListPage> {
     );
   }
 
-  Widget itemImage() {
+  Widget itemImage(ItemDetails item) {
+    return Stack(
+      children: [
+        Container(
+            width: MediaQuery.of(context).size.width * 0.15,
+            height: MediaQuery.of(context).size.width * 0.15,
+            child: Image.asset(
+              getItemImage(),
+              height: MediaQuery.of(context).size.width * 0.5,
+              width: MediaQuery.of(context).size.width * 0.5,
+            )),
+        if (item.availability == 0)
+          buyItemImage(MediaQuery.of(context).size.width),
+      ],
+    );
+  }
+
+  String getItemImage() {
+    Random random = new Random();
+    int randomNumber = random.nextInt(4); // from 0 upto 99 included
+
+    print(randomNumber);
+    if (randomNumber > 0 && randomNumber < 1) {
+      return "assets/fruits.png";
+    } else if (randomNumber >= 1 && randomNumber < 2) {
+      return "assets/pancakes.png";
+    } else {
+      return "assets/healthy-food.png";
+    }
+  }
+
+  Widget buyItemImage(bodyHeight) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.15,
-        height: MediaQuery.of(context).size.width * 0.15,
-        margin: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-        decoration: new BoxDecoration(
-            shape: BoxShape.circle,
-            image: new DecorationImage(
-                fit: BoxFit.cover,
-                image: new NetworkImage(
-                    "https://ep01.epimg.net/elpais/imagenes/2019/06/24/icon/1561369019_449523_1561456608_noticia_normal.jpg"))));
+      width: bodyHeight * 0.19,
+      height: bodyHeight * 0.15,
+      child: Align(
+          alignment: Alignment.topRight,
+          child: Image.asset(
+            "assets/buy.png",
+            height: 35,
+            width: 35,
+            fit: BoxFit.cover,
+          )),
+    );
   }
 
   dynamic addItemToCategory(categoryId, categoryName) {

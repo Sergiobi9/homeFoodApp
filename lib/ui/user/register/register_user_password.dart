@@ -95,13 +95,12 @@ class _MyAppState extends State<RegisterUserPasswordPage> {
   }
 
   dynamic loginUser(UserSession userSession) async {
-    String userRole = userSession.user.userRole;
 
     await SharedPref().saveBooleanToStorage("isUserLoggedIn", true);
     await SharedPref().saveStringToStorage("userEmail", userSession.user.email);
     await SharedPref().saveStringToStorage("userId", userSession.user.id);
     await SharedPref().saveObjectToStorage("userSession", userSession);
-    Utils().filterUser(context, userRole);
+    Utils().filterUser(context);
   }
 
   Widget userPasswordInput() {

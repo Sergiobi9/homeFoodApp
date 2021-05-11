@@ -55,6 +55,7 @@ class _MyAppState extends State<RegisterItemLocationsAvailablePage> {
                 height: MediaQuery.of(context).size.height * 0.1,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
                     itemCount: itemLocationsAvailable.length,
                     itemBuilder: (context, index) {
                       return itemLocation(
@@ -119,10 +120,10 @@ class _MyAppState extends State<RegisterItemLocationsAvailablePage> {
     } else {
       return Container(
           margin: EdgeInsets.only(right: 20, left: 20, bottom: 20),
-          height: MediaQuery.of(context).size.height * 0.3,
           child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: itemLocationsAdded.length,
               itemBuilder: (context, index) {
                 return new GestureDetector(

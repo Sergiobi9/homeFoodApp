@@ -62,6 +62,11 @@ flutter:
     - assets/home_food_icon.png
     - assets/google_icon.png
     - assets/facebook_icon.png
+    - assets/buy.png
+    - assets/fruits.png
+    - assets/pancakes.png
+    - assets/healthy-food.png
+  
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

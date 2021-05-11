@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:home_food_project/constants/constants.dart';
 import 'package:home_food_project/entities/category/category_details.dart';
 import 'package:home_food_project/entities/item/item_details.dart';
 import 'package:home_food_project/entities/item_location/item_location_details.dart';
 import 'package:home_food_project/services/item/item_service.dart';
+import 'package:home_food_project/ui/item/item_list.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class ItemDetailsPage extends StatefulWidget {
@@ -16,7 +19,6 @@ class ItemDetailsPage extends StatefulWidget {
 }
 
 class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
-  
   ItemDetailsPageImplementation({Key key, this.itemId});
 
   String itemId;
@@ -62,18 +64,47 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
               itemQuestion(),
               getItemPhoto(context),
               createdDetails(),
+              getPriceText(),
               availabilityText(),
               availabilityList(context),
               locationsText(),
               locationsList(context),
               categoriesText(),
               categoriesList(context),
+              deleteBtn(),
             ]));
           } else {
             return Align(
                 alignment: Alignment.center,
                 child: CircularProgressIndicator());
           }
+        });
+  }
+
+  Widget deleteBtn() {
+    return GestureDetector(
+        onTap: () {
+          delete();
+        },
+        child: Container(
+          margin: EdgeInsets.only(left: 25.0, right: 15.0),
+          alignment: Alignment.center,
+          child: Text(
+            "Delete item",
+            style: TextStyle(
+                color: Color(0xFFFF0000),
+                fontSize: 16,
+                fontWeight: FontWeight.normal),
+          ),
+        ));
+  }
+
+  void delete() {
+    ItemService().deleteItem(itemId).then((value) => {
+          if (value == "success")
+            {Utils.navigatePage(context, ItemListPage())}
+          else
+            {Utils.showToast("Something went wrong, please try again later")}
         });
   }
 
@@ -89,6 +120,36 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
             fontWeight: FontWeight.bold),
       ),
     );
+  }
+
+  Widget getPriceText() {
+    return Container(
+      margin: EdgeInsets.only(left: 25.0, right: 15.0, bottom: 15),
+      alignment: Alignment.center,
+      child: Text(
+        itemDetails.price == null
+            ? "Price not specified"
+            : itemDetails.price.toString() + "€",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            color: Color(0xff333333),
+            fontSize: 26,
+            fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  String getItemImage() {
+    Random random = new Random();
+    int randomNumber = random.nextInt(4); // from 0 upto 99 included
+
+    if (randomNumber > 0 && randomNumber < 1) {
+      return "assets/fruits.png";
+    } else if (randomNumber >= 1 && randomNumber < 2) {
+      return "assets/pancakes.png";
+    } else {
+      return "assets/healthy-food.png";
+    }
   }
 
   Widget locationsText() {
@@ -254,21 +315,28 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Color(0xFFE74C3C))))),
-              onPressed: () => {updateAvailability(Constants.ITEM_NO_AVAILABILITY)}),
+              onPressed: () =>
+                  {updateAvailability(Constants.ITEM_NO_AVAILABILITY)}),
         ));
   }
 
-  void updateAvailability(int availability){
+  void updateAvailability(int availability) {
     setState(() {
-      ItemService().updateItemAvailability(itemId, availability).then((value) => {
-      print(value),
-      if (value == null){
-        Utils.showToast("Something wrong happened, please try again later"),
-      } else {
-        Utils.showToast("Availability updated"),
-        availability = getAvailability(value) as int,
-      }
-    });
+      ItemService()
+          .updateItemAvailability(itemId, availability)
+          .then((value) => {
+                print(value),
+                if (value == null)
+                  {
+                    Utils.showToast(
+                        "Something wrong happened, please try again later"),
+                  }
+                else
+                  {
+                    Utils.showToast("Availability updated"),
+                    availability = getAvailability(value) as int,
+                  }
+              });
     });
   }
 
@@ -294,7 +362,8 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Color(0xFFFFC300))))),
-              onPressed: () => {updateAvailability(Constants.ITEM_POOR_AVAILABILITY)}),
+              onPressed: () =>
+                  {updateAvailability(Constants.ITEM_POOR_AVAILABILITY)}),
         ));
   }
 
@@ -320,7 +389,8 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.0),
                           side: BorderSide(color: Color(0xFF229954))))),
-              onPressed: () => {updateAvailability(Constants.ITEM_FULL_AVAILABILITY)}),
+              onPressed: () =>
+                  {updateAvailability(Constants.ITEM_FULL_AVAILABILITY)}),
         ));
   }
 
@@ -346,12 +416,11 @@ class ItemDetailsPageImplementation extends State<ItemDetailsPage> {
         width: MediaQuery.of(context).size.width * 0.6,
         height: MediaQuery.of(context).size.width * 0.6,
         margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-        decoration: new BoxDecoration(
-            shape: BoxShape.circle,
-            image: new DecorationImage(
-                fit: BoxFit.cover,
-                image: new NetworkImage(
-                    "https://ep01.epimg.net/elpais/imagenes/2019/06/24/icon/1561369019_449523_1561456608_noticia_normal.jpg"))));
+        child: Image.asset(
+          getItemImage(),
+          height: MediaQuery.of(context).size.width * 0.5,
+          width: MediaQuery.of(context).size.width * 0.5,
+        ));
   }
 
   Widget itemQuestion() {

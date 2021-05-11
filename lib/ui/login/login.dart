@@ -120,8 +120,7 @@ class _MyAppState extends State<LoginPage> {
     await SharedPref().saveStringToStorage("userEmail", userSession.user.email);
     await SharedPref().saveStringToStorage("userId", userSession.user.id);
     await SharedPref().saveObjectToStorage("userSession", userSession);
-    String userRole = userSession.user.userRole;
-    Utils().filterUser(context, userRole);
+    Utils().filterUser(context);
   }
 
   Widget loginViaEmailText() {

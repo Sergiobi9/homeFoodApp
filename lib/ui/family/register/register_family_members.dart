@@ -171,11 +171,11 @@ class _MyAppState extends State<RegisterFamilyMemebersPage> {
     userSession['user']['userRole'] = familyOwnerRole;
     await SharedPref().saveObjectToStorage("userSession", userSession);
 
-    redirectUser(familyOwnerRole);
+    redirectUser();
   }
 
-  void redirectUser(userRole){
-    Utils().filterUser(context, userRole);
+  void redirectUser(){
+    Utils().filterUser(context);
   }
 
   Widget familyMembersInput() {

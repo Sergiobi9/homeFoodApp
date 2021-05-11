@@ -5,6 +5,7 @@ class Item {
   String creatorUserId = "";
   String dateAdded = "";
   int availability = -1;
+  double price = 0;
   List<String> availableItemLocationIds = [];
 
   Item() {}
@@ -16,6 +17,7 @@ class Item {
     creatorUserId = json['creatorUserId'];
     dateAdded = json['dateAdded'];
     availability = json['availability'];
+    price = json['price'];
     availableItemLocationIds = json['availableItemLocationIds'];
   }
 
@@ -26,6 +28,7 @@ class Item {
         'creatorUserId': creatorUserId,
         'dateAdded': dateAdded,
         'availability': availability,
+        'price': price,
         'availableItemLocationIds': availableItemLocationIds
       };
 }

@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
     
     getUiDependingOnUser(context).then((res) {
       if (res == true && userSession != null) {
-        Utils().filterUser(context, userSession.user.userRole);
+        Utils().filterUser(context);
       } else {
         Utils.navigatePage(context, LoginPage());
       }

@@ -95,4 +95,20 @@ class ItemService {
       return null;
     }
   }
+
+  Future<dynamic> deleteItem(String itemId) async {
+
+    final response = await http.delete(
+        Uri.http(itemEndpoint,
+            "item/itemId/${itemId}"),
+        headers: {
+          "Content-Type": "application/json",
+        });
+
+    if (response.statusCode == 200) {
+      return "success";
+    } else {
+      return null;
+    }
+  }
 }

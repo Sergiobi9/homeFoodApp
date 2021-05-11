@@ -225,7 +225,7 @@ class UserFamilyOwnerHomePage extends StatelessWidget {
         alignment: Alignment.topLeft,
         child: Column(children: [
           Text(
-            "Good morning, " + "Pepe",
+            "Good morning",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           )

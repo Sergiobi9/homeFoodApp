@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_food_project/ui/item/register/register_item.dart';
 import 'package:home_food_project/ui/item/register/register_item_image.dart';
+import 'package:home_food_project/ui/item/register/register_item_price.dart';
 import 'package:home_food_project/utils/utils.dart';
 
 class RegisterItemNamePage extends StatelessWidget {
@@ -76,7 +77,7 @@ class RegisterItemNamePage extends StatelessWidget {
     RegisterItem.item.familyId = familyId;
     RegisterItem.categoryId = categoryId;
 
-    Utils.navigateToNewScreen(context, RegisterItemImage());
+    Utils.navigateToNewScreen(context, RegisterItemPricePage());
   }
 
   Widget itemNameInput() {
